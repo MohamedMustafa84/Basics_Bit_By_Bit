@@ -1,0 +1,204 @@
+#include <iostream>
+using namespace std;
+enum enNumsOrder
+{
+    forwards = 1
+};
+
+enum enWhatToSum
+{
+    Even = 1,
+    odd = 2,
+    all = 3
+};
+
+// ------------------ 26 -----
+void  readnumber(int&N){
+    do{
+    cout << " please enter Number greter than zero -->";
+    cin >> N;
+    cout << endl;
+    } while (N <= 0);
+} 
+enNumsOrder Orders(){
+    enNumsOrder order;
+    int OrderNum;
+    cout << "please Enter your Order ( 1 or 2) :";
+    cout << "\n1- forwared\n";
+    cout << "2-not forwares" << endl;
+    cin >> OrderNum;
+    order = (enNumsOrder)OrderNum;
+    return order;
+}
+
+ void PrintNumsFrom1TO_N_using_for(int Number,enNumsOrder order)
+ {
+    cout << "the numbers from 1 to " << Number<<"using for loop "<<endl;
+    if(order == enNumsOrder::forwards){
+        for (int i = 1; i <= Number; i++)
+        {
+            cout << i << endl;
+        }
+    }
+    else{
+        for (int i = Number; i >=1; i--)
+        {
+            cout << i << endl;
+        }
+    }
+}
+
+
+
+
+void PrintNumsFrom1TO_N_using_while(int number){
+     cout << "the numbers from 1 to " << number <<"using while loop"<<endl;
+     int i = 1;
+     while (i <= number){
+         cout << i << endl;
+         i++;
+        }
+    }
+    void PrintNumsFrom1TO_N_using_dowhile(int number){
+         cout << "the numbers from 1 to " << number <<"using do while loop"<<endl;
+         int i=1;
+        do{
+            cout << i << endl;
+            i++;
+        } while (i < number);
+     }
+
+
+     // ------------------ 26 -----
+     long SumOddNUmsFrom1ToN_U_For(int number){
+         long sum = 0;
+         for (int i = 1; i <= number; i=i+2){
+             sum += i;
+         }
+         return sum;
+     }
+
+     long SumOddNUmsFrom1ToN_U_while(int number)
+     {
+         long sum = 0;
+         int i = 1;
+         while(i<=number){
+             sum += i;
+             i += 2;
+         }
+         return sum;
+     }
+     long SumOddNUmsFrom1ToN_U_Do_while(int number)
+     {
+         long sum = 0;
+         int i = 1;
+         do{
+             sum += i;
+             i += 2;
+         } while (i <= number);
+         return sum;
+     }
+     long Sum_Even_NUmsFrom1ToN_U_Do_while(int number)
+     {
+         long sum = 0;
+         int i = 0;
+         do
+         {
+             sum += i;
+             i += 2;
+         } while (i <= number);
+         return sum;
+     }
+
+         void
+         printSum(long sum, int number)
+     {
+         cout << " the sum of the odd number from zero to " << number << " is " << sum << endl;
+     }
+
+      void printSumOF_Even_num(long sum, int number)
+     {
+         cout << " the sum of the Even number from zero to " << number << " is " << sum << endl;
+     }
+
+     // ------------------ 30 -----
+     long CalculateFactorial(int number){
+         long factorial = 1;
+         for (int i = number; i >=1; i--){
+             factorial *= i;
+            }
+         return factorial;
+     }
+
+     void printFactorial(long factorial,int number){
+         cout << " the factorial of the number " << number << " is " << factorial << endl;
+     }
+
+     // ------------------ هواده -----
+     int SumAllNumFrom1ToN(int number){
+         int sum = 0;
+         for (int i = 0; i <= number; i++){
+             sum += i;
+         }
+         return sum;
+     }
+     void PrintSumOfAllNums(int sum,int number){
+         cout << " the sum of all number from 1 to " << number << " is " << sum << endl;
+     }
+
+     enWhatToSum readSumType(){
+         int SumType;
+         cout << "please enter the number of your sum type from this list :\n";
+         cout << "1- Even Numbers\n";
+         cout << "2- Odd Numbers\n";
+         cout << "3- All numbers\n";
+         cin >> SumType;
+         return (enWhatToSum)SumType;
+     }
+
+     void SumOfNums(enWhatToSum sumType,int number){
+        if(sumType == enWhatToSum::Even)
+              printSumOF_Even_num(Sum_Even_NUmsFrom1ToN_U_Do_while(number), number);
+            else if (sumType == enWhatToSum::odd)
+                printSum(SumOddNUmsFrom1ToN_U_For(number), number);
+        else
+            PrintSumOfAllNums(SumAllNumFrom1ToN(number),number);
+     }
+     int
+     main()
+     {
+
+         // ------------------ 26 -----
+         //  برنامج يطلب من المستخدم ادخال  رقم ثم يقوم بطباعة الارقام تصاعديا من صفر حتى الرقم
+         // عليك استخدام كل انواع الحلقات
+         // PrintNumsFrom1TO_N_using_for(readnumber());
+         // PrintNumsFrom1TO_N_using_while(readnumber());
+         // PrintNumsFrom1TO_N_using_dowhile(readnumber());
+
+         // ------------------ 27 -----
+         // نفس المسائلة الفوق لكن المرة دي العد تنازلي برضو تستخدم كل اللوب
+
+        //  PrintNumsFrom1TO_N_using_for(Orders(), readnumber());
+
+         // PrintNumsFrom1TO_N_using_for(Orders(), readnumber());
+         // PrintNumsFrom1TO_N_using_while(readnumber());
+         // PrintNumsFrom1TO_N_using_dowhile(readnumber());
+         // ------------------ 28 -----
+         //  جمع الارقام الفردية من 1 الى  n
+        //  int number;
+        //  readnumber(number);
+         //  printSum(SumOddNUmsFrom1ToN_U_For(number), number);
+        //   printSum(SumOddNUmsFrom1ToN_U_while(number), number);
+        //   printSum(SumOddNUmsFrom1ToN_U_Do_while(number), number);
+         
+          // ------------------ 29 -----
+          // المرة دي الارقام الزوجية   ايفن
+        //   printSumOF_Even_num(Sum_Even_NUmsFrom1ToN_U_Do_while(number), number);
+         // ------------------ 30-----
+         // قم  بحساب  factorial  للرقم اي مضروب العدد  لا تنسى ان تتاكد من من ان الرقم موجب
+        //  printFactorial(CalculateFactorial(number),number);
+         // ------------------  هواده -----
+        
+        //  SumOfNums(readSumType(),number);
+         return 0;
+     }
