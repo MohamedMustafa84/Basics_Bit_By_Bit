@@ -1,0 +1,77 @@
+#pragma once
+
+#include <iostream>
+#include <limits>
+#include <cstdlib>
+using namespace std;
+
+namespace UserInputs
+{
+    int ReadNumber(string Message)
+    {
+        int Number;
+        cout << Message << " ";
+        cin >> Number;
+        while (cin.fail())
+        {
+            cin.clear(); 
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            cout << "Invalid input , Please Enter A Number:" << endl;
+            cin >> Number;
+        }
+        return Number;
+    }
+
+    int ReadNumberInRange(string Message, int from ,int to){
+        int Number = ReadNumber(Message);
+
+        while(Number <from ||Number>to){
+            cout << "The Number Most be Between " << from << " and " << to << " Please retry :";
+            Number = ReadNumber("");
+        }
+        cout << endl;
+        
+        return Number;
+    }
+
+    string ReadString(string prompt)
+    {
+        string Str;
+        cout << prompt << endl;
+        getline(cin>>ws, Str);
+        return Str;
+    }
+}
+
+namespace Checker
+{
+    bool isPositiveNumber(int Number)
+    {
+        return (Number >= 0) ? true : false;
+    }
+}
+
+namespace Random{
+
+
+    int RandomNumber(){
+        return rand();
+    }
+
+    int RandomNumberInRange(int from ,int to){
+        return rand() % (to - from + 1) + from;
+    }
+
+}
+
+
+namespace Invert{
+    char invertCharacterCase(char Character)
+    {
+
+        return isupper(Character) ? tolower(Character) : toupper(Character);
+    }
+}
+
+
