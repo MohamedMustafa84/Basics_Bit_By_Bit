@@ -589,8 +589,6 @@ bool preformMainScreenMenu(enMainmenu UserChoice)
 int main()
 {
 
-    // problem
-    //: write a program to Update  client informations based on account number
 
     ShowMainMenu();
 
