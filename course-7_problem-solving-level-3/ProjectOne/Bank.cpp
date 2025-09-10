@@ -48,7 +48,7 @@ void ShowMainMenu()
 
 enMainmenu readUserChoice()
 {
-    return (enMainmenu)(UserInputs::ReadNumberInRange("Choose What Do You Want To Do ? [1 to 6] :", 1, 6));
+    return (enMainmenu)(UserInputs::ReadNumberInRange("Choose What Do You Want To Do ? ", 1, 6));
 }
 
 vector<string> splitString(string Str, string delim)
@@ -259,7 +259,7 @@ void addNewClients()
 
     } while (toupper(AddNewClient) == 'Y');
 }
-
+                                                                                                                                                                    
 void showAddClientsScreen()
 {
     cout << "-------------------------------------------------------------------------------\n";
@@ -588,6 +588,7 @@ bool preformMainScreenMenu(enMainmenu UserChoice)
 
 int main()
 {
+
 
 
     ShowMainMenu();

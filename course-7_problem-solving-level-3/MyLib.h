@@ -17,17 +17,32 @@ namespace UserInputs
             cin.clear(); 
             cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-            cout << "Invalid input , Please Enter A Number:" << endl;
+            cout << "\nInvalid input , Please Enter A Number:" << endl;
             cin >> Number;
         }
         return Number;
     }
 
+
+
     int ReadNumberInRange(string Message, int from ,int to){
-        int Number = ReadNumber(Message);
+
+
+        int Number;
+        cout << Message << " from "<<from<<" to "<<to<<" : ";
+        cin >> Number;
+        while (cin.fail())
+        {
+            cin.clear(); 
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            cout << "\nInvalid input , Please Enter A Number:" << endl;
+            cin >> Number;
+        }
+
 
         while(Number <from ||Number>to){
-            cout << "The Number Most be Between " << from << " and " << to << " Please retry :";
+            cout << "\nThe Number Most be Between " << from << " and " << to << " Please retry :";
             Number = ReadNumber("");
         }
         cout << endl;

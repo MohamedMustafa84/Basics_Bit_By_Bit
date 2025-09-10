@@ -4,7 +4,7 @@
 using namespace std;
 
 
-int main9(){
+int main(){
     cout << "|------------|-------------------------------|----------|\n";
     cout << "|    Code    |             Name              |    Mark  |\n";
     cout << setw(9) << "c23|" << setw(32) << "Introduction To Programming 1 | " << setw(9) << "95|\n";
