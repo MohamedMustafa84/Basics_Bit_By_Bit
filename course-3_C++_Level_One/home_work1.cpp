@@ -379,7 +379,7 @@ int main(){
 
 //   cout <<"please enter the loanamount   ->";
 //   cin >>loanamount ;
-//   cout <<"please enter the manthypayment  ->";
+//   cout <<"please enter the  manthypayment  ->";
 //   cin >> monthscount;
 
 //   cout << "\n\n\n  your  shuld  pay monthly  " << loanamount / monthscount << " to complete the loan ";
