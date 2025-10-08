@@ -2,9 +2,8 @@
 
 #include <iostream>
 #include "MyLib.h"
+#include <cmath>
 using namespace std;
-
-
 
 namespace Date{
 
@@ -62,6 +61,27 @@ namespace Date{
                (DateOne.Month == DateTwo.Month) ?
                 DateOne.Day < DateTwo.Day: false: false;
         }
+
+        bool isValidDate(stDate Date){
+            return (Date.Year > 0 ? (Date.Month >= 1 || Date.Month <= 12) ?
+             Date.Day <= NumberOfDaysInAMonth(Date.Month, Date.Year):false:false);
+        }
+
+        bool isEndOfWeek(Date::stDate Date)
+        {
+            return Date::DayOfWeekOrder(Date) == 6;
+        }
+
+        bool isWeekEnd(Date::stDate Date)
+        {
+            short DayIndex = Date::DayOfWeekOrder(Date);
+            return (DayIndex == 5 || DayIndex == 6);
+        }
+
+        bool isBusinessDay(Date::stDate Date)
+        {
+            return !isWeekEnd(Date);
+        }
     }
     stDate ReadFullDate()
     {
@@ -69,20 +89,10 @@ namespace Date{
         Date.Year = UserInputs::ReadPositiveNumber("Please Enter The Year  : ");
         Date.Month = UserInputs::ReadNumberInRange("Please Enter The Month", 1, 12);
 
-        short Number_Of_Days_In_Month = NumberOfDaysInAMonth(Date.Month, Date.Year);
+        short NumberOfDaysInMonth = NumberOfDaysInAMonth(Date.Month, Date.Year);
 
-        Date.Day = UserInputs::ReadNumberInRange("Please Enter The Day ", 1, NumberOfDaysInAMonth(Date.Month, Date.Year));
+        Date.Day = UserInputs::ReadNumberInRange("Please Enter The Day ",1, NumberOfDaysInMonth);
 
-        while (Date.Day>Number_Of_Days_In_Month)
-        {
-            if(Date.Month ==2){
-                cout << "Invalid  Input , Month 2 in the Year " << Date.Year << " Have Maximum " << Number_Of_Days_In_Month<<" Days Please Enter Valid Day : ";
-                 Date.Day = UserInputs::ReadPositiveNumber("");
-            }else{
-                cout << "Invalid  Input , Month " << Date.Month << " Have Maximum " << Number_Of_Days_In_Month << " Days Please Enter Valid Day : ";
-                Date.Day = UserInputs::ReadPositiveNumber("");
-            }
-        }
 
         return Date;
     }
@@ -123,10 +133,23 @@ namespace Date{
         return stDate;
     }
 
+    int DayOfWeekOrder(Date::stDate Date)
+    {
+        int a, y, m;
+        a = (14 - Date.Month) / 12;
+        y = Date.Year - a;
+        m = Date.Month + (12 * a) - 2;
+        return (Date.Day + y + (y / 4) - (y / 100) + (y / 400) + (31 * m / 12)) % 7;
+    }
+    string DayShortName(int DayOfWeekOrder)
+    {
+        string arrDayNames[] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
+        return arrDayNames[DayOfWeekOrder];
+    }
 
     namespace Increase{
 
-        Date::stDate Increase_Year_ByXDays(Date::stDate stDate, int &NumberOfIncreaseDays)
+        Date::stDate IncreaseYearByXDays(Date::stDate stDate, int &NumberOfIncreaseDays)
         {
 
             while (NumberOfIncreaseDays >= (Date::checker::isLeapYear(stDate.Year) ? 366 : 365))
@@ -138,7 +161,7 @@ namespace Date{
             return stDate;
         }
 
-        Date::stDate Increase_Month_ByXDays(Date::stDate stDate, int &NumberOfIncreaseDays)
+        Date::stDate IncreaseMonthByXDays(Date::stDate stDate, int &NumberOfIncreaseDays)
         {
 
             while (NumberOfIncreaseDays >= Date::NumberOfDaysInAMonth(stDate.Month, stDate.Year))
@@ -159,11 +182,11 @@ namespace Date{
             return stDate;
         }
 
-        Date::stDate Increase_Date_ByXDays(Date::stDate stDate, int RemainingDays)
+        Date::stDate IncreaseDateByXDays(Date::stDate stDate, int RemainingDays)
         {
 
-            stDate = Increase_Year_ByXDays(stDate, RemainingDays);
-            stDate = Increase_Month_ByXDays(stDate, RemainingDays);
+            stDate = IncreaseYearByXDays(stDate, RemainingDays);
+            stDate = IncreaseMonthByXDays(stDate, RemainingDays);
 
             stDate.Day += RemainingDays;
 
@@ -185,11 +208,11 @@ namespace Date{
             return stDate;
         }
 
-        Date::stDate IncreaseDateBy_XWeek(Date::stDate stDate,int WeeksNumber){
-            return Increase_Date_ByXDays(stDate, WeeksNumber * 7);
+        Date::stDate IncreaseDateByXWeek(Date::stDate stDate,int WeeksNumber){
+            return IncreaseDateByXDays(stDate, WeeksNumber * 7);
         }
 
-        Date::stDate IncreaseDateBy_XMonth(Date::stDate stDate, int MonthsNumber)
+        Date::stDate IncreaseDateByXMonth(Date::stDate stDate, int MonthsNumber)
         {
             
             stDate.Month += MonthsNumber;
@@ -203,7 +226,7 @@ namespace Date{
             return stDate;
         }
 
-        Date::stDate IncreaseDateBy_XYear(Date::stDate stDate, int YearsNumber)
+        Date::stDate IncreaseDateByXYear(Date::stDate stDate, int YearsNumber)
         {
             stDate.Year += YearsNumber;
             short NumberOfMonthDays = NumberOfDaysInAMonth(stDate.Month, stDate.Year);
@@ -244,10 +267,134 @@ namespace Date{
 
     }
 
+   
+   namespace Decrease{
+
+       Date::stDate DecreaseDateByOneDay(Date::stDate stDate)
+       {
+           if (1 == stDate.Day)
+           {
+
+               if (1 == stDate.Month)
+               {
+                   stDate.Day = 31;
+                   stDate.Month = 12;
+                   stDate.Year--;
+               }
+               else
+               {
+                   stDate.Day = Date::NumberOfDaysInAMonth(stDate.Month - 1, stDate.Year);
+                   stDate.Month--;
+               }
+           }
+           else
+           {
+               stDate.Day--;
+           }
+           return stDate;
+       }
+
+       Date::stDate DecreaseYearByXDays(Date::stDate stDate, int &NumberOfSubtractDays)
+       {
+
+           while (NumberOfSubtractDays >= (Date::checker::isLeapYear(stDate.Year) ? 366 : 365))
+           {
+
+               NumberOfSubtractDays -= (Date::checker::isLeapYear(stDate.Year) ? 366 : 365);
+               stDate.Year--;
+           }
+
+           return stDate;
+       }
+       Date::stDate DecreaseMonthByXDays(Date::stDate stDate, int &NumberOfSubstractDays)
+       {
+           while (NumberOfSubstractDays >= Date::NumberOfDaysInAMonth(stDate.Month, stDate.Year))
+           {
+               NumberOfSubstractDays -= Date::NumberOfDaysInAMonth(stDate.Month, stDate.Year);
+
+               if (stDate.Month == 1)
+               {
+                   stDate.Month = 12;
+                   stDate.Year--;
+               }
+               else
+               {
+                   stDate.Month--;
+               }
+           }
+
+           while (NumberOfSubstractDays > 0)
+           {
+               stDate = DecreaseDateByOneDay(stDate);
+               NumberOfSubstractDays--;
+           }
+
+           return stDate;
+       }
+
+       Date::stDate DecreaseDateByXDays(Date::stDate stDate, int RemainingDays)
+       {
+
+           stDate = DecreaseYearByXDays(stDate, RemainingDays);
+           stDate = DecreaseMonthByXDays(stDate, RemainingDays);
+           while (RemainingDays > 0)
+           {
+               if (RemainingDays >= stDate.Day)
+               {
+                   RemainingDays -= stDate.Day;
+
+                   if (stDate.Month == 1)
+                   {
+                       stDate.Month = 12;
+                       stDate.Year--;
+                   }
+                   else
+                   {
+                       stDate.Month--;
+                   }
+
+                   stDate.Day = Date::NumberOfDaysInAMonth(stDate.Month, stDate.Year);
+               }
+               else
+               {
+                   stDate.Day -= RemainingDays;
+                   RemainingDays = 0;
+               }
+           }
+
+           return stDate;
+       }
+
+       Date::stDate DecreaseDateByXMonth(Date::stDate Date, int NumOfSubtractMonths)
+       {
+           int totalMonths = (Date.Year * 12 + Date.Month - 1) - NumOfSubtractMonths;
+           Date.Year = totalMonths / 12;
+           Date.Month = totalMonths % 12 + 1;
+
+           return Date;
+       }
+       Date::stDate DecreaseDateByXYear(Date::stDate Date, int NumOfSubtractYears)
+       {
+           Date.Year = Date.Year - NumOfSubtractYears;
+           short maxDays = Date::NumberOfDaysInAMonth(Date.Month, Date.Year);
+           if (Date.Day > maxDays)
+               Date.Day = maxDays;
+
+           return Date;
+       }
+   }
+
+  
+
     int GetDifferenceInDays(Date::stDate DateOne, Date::stDate DateTwo, bool IncludeEndDay = false)
     {
 
-        int Days = 0;
+        int DiffDays = 0;
+
+        if (checker::isDateOneEqualDateTwo(DateOne, DateTwo))
+        {
+            return IncludeEndDay ? ++DiffDays : DiffDays;
+        }
 
         if(!Date::checker::isDateOneBeforeDateTwo(DateOne, DateTwo))
         {
@@ -256,13 +403,27 @@ namespace Date{
 
         while (Date::checker::isDateOneBeforeDateTwo(DateOne, DateTwo))
         {
-            Days++;
-            DateOne =Increase::IncreaseDateByOneDay(DateOne);
+            DateOne = Increase::IncreaseDateByXYear(DateOne, 1);
+            DiffDays +=(checker::isLeapYear(DateOne.Year) ? 366 : 365);
+            
         }
+        
+        DiffDays -= (checker::isLeapYear(DateOne.Year) ? 366 : 365);
+        DateOne.Year--;
 
-        return IncludeEndDay ? ++Days : Days;
+        while (Date::checker::isDateOneBeforeDateTwo(DateOne, DateTwo)){
+        
+            DateOne = Increase::IncreaseDateByXMonth(DateOne, 1);
+            DiffDays += NumberOfDaysInAMonth(DateOne.Month, DateOne.Year);
+            if (DateOne.Year == DateTwo.Year && DateOne.Month == DateTwo.Month)
+            {
+                DiffDays += abs(DateTwo.Day - DateOne.Day);
+            }
+        }
+        return IncludeEndDay ? ++DiffDays : DiffDays;
     }
-    stDate GetCurrentDate(){
+    stDate GetCurrentDate()
+    {
         stDate Date;
 
         time_t t = time(0);
