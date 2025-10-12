@@ -14,13 +14,68 @@ namespace Date{
         int Year;
     };
 
+    struct stPeriod
+    {
+        Date::stDate DateFrom;
+        Date::stDate DateTo;
+    };
+
+    enum enDateCompare
+    {
+        Before = -1,
+        Equal = 0,
+        After = 1,
+    };
+
+   
+
+
     short NumberOfDaysInAMonth(short Month, int Year);
+    int DayOfWeekOrder(Date::stDate Date);
+    enDateCompare CompareTwoDates(Date::stDate DateOne, Date::stDate DateTwo);
 
     void SwapDates(Date::stDate &DateOne, Date::stDate &DateTwo)
     {
         Date::stDate Temp = DateOne;
         DateOne = DateTwo;
         DateTwo = Temp;
+    }
+
+    string FormatDate(Date::stDate stDate, string DateFormat = "dd/mm/yyyy")
+    {
+
+        string formattedDate = "";
+
+        formattedDate = String::Replace_Word_In_String(DateFormat, "dd", to_string(stDate.Day));
+        formattedDate = String::Replace_Word_In_String(formattedDate, "mm", to_string(stDate.Month));
+        formattedDate = String::Replace_Word_In_String(formattedDate, "yyyy", to_string(stDate.Year));
+
+        return formattedDate;
+    }
+
+    stDate ReadFullDate()
+    {
+        stDate Date;
+        Date.Year = UserInputs::ReadPositiveNumber("Please Enter The Year  : ");
+        Date.Month = UserInputs::ReadNumberInRange("Please Enter The Month", 1, 12);
+
+        short NumberOfDaysInMonth = NumberOfDaysInAMonth(Date.Month, Date.Year);
+
+        Date.Day = UserInputs::ReadNumberInRange("Please Enter The Day ",1, NumberOfDaysInMonth);
+
+
+        return Date;
+    }
+
+    stPeriod ReadPeriod(string PeriodName)
+    {
+        stPeriod Period;
+        cout << "Please Enter " << PeriodName << " Start  Date :\n";
+        Period.DateFrom = Date::ReadFullDate();
+        cout << "Now Enter The End " << PeriodName << " Date :\n";
+        Period.DateTo = Date::ReadFullDate();
+
+        return Period;
     }
 
     namespace checker
@@ -30,7 +85,6 @@ namespace Date{
         {
             return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
         }
-
 
         bool isLastDayInMonth(Date::stDate Date)
         {
@@ -42,29 +96,25 @@ namespace Date{
             return Date.Month == 12;
         }
 
-
         bool isDateOneEqualDateTwo(stDate DateOne, stDate DateTwo)
         {
 
             return DateOne.Year == DateTwo.Year &&
-             DateOne.Month == DateTwo.Month && 
-             DateOne.Day == DateTwo.Day ;
+                   DateOne.Month == DateTwo.Month &&
+                   DateOne.Day == DateTwo.Day;
         }
-
 
         bool isDateOneBeforeDateTwo(stDate DateOne, stDate DateTwo)
         {
 
-            return (DateOne.Year < DateTwo.Year) ? true :
-             (DateOne.Year == DateTwo.Year) ?
-              (DateOne.Month < DateTwo.Month) ?true :
-               (DateOne.Month == DateTwo.Month) ?
-                DateOne.Day < DateTwo.Day: false: false;
+            return (DateOne.Year < DateTwo.Year) ? true : (DateOne.Year == DateTwo.Year) ? (DateOne.Month < DateTwo.Month) ? true : (DateOne.Month == DateTwo.Month) ? DateOne.Day < DateTwo.Day
+                                                                                                                                                                     : false
+                                                                                         : false;
         }
 
-        bool isValidDate(stDate Date){
-            return (Date.Year > 0 ? (Date.Month >= 1 || Date.Month <= 12) ?
-             Date.Day <= NumberOfDaysInAMonth(Date.Month, Date.Year):false:false);
+        bool isValidDate(stDate Date)
+        {
+            return (Date.Year > 0 ? (Date.Month >= 1 || Date.Month <= 12) ? Date.Day <= NumberOfDaysInAMonth(Date.Month, Date.Year) : false : false);
         }
 
         bool isEndOfWeek(Date::stDate Date)
@@ -80,21 +130,25 @@ namespace Date{
 
         bool isBusinessDay(Date::stDate Date)
         {
-            return !isWeekEnd(Date);
+            return (!isWeekEnd(Date));
         }
-    }
-    stDate ReadFullDate()
-    {
-        stDate Date;
-        Date.Year = UserInputs::ReadPositiveNumber("Please Enter The Year  : ");
-        Date.Month = UserInputs::ReadNumberInRange("Please Enter The Month", 1, 12);
 
-        short NumberOfDaysInMonth = NumberOfDaysInAMonth(Date.Month, Date.Year);
+        bool isItOverLapPeriods(Date::stPeriod PeriodOne, Date::stPeriod PeriodTwo)
+        {
 
-        Date.Day = UserInputs::ReadNumberInRange("Please Enter The Day ",1, NumberOfDaysInMonth);
+            if (CompareTwoDates(PeriodTwo.DateTo, PeriodOne.DateFrom) == enDateCompare::Before ||
+                CompareTwoDates(PeriodTwo.DateFrom, PeriodOne.DateTo) == enDateCompare::After)
+            {
+                return false;
+            }
+            return true;
+        }
 
-
-        return Date;
+        bool isDateinPeriod(Date::stDate Date, Date::stPeriod Period)
+        {
+            return !(Date::CompareTwoDates(Period.DateFrom, Date) == Date::enDateCompare::Before ||
+                     Date::CompareTwoDates(Date, Period.DateTo) == Date::enDateCompare::After);
+        }
     }
 
     short NumberOfDaysInAMonth(short Month, int Year)
@@ -145,6 +199,19 @@ namespace Date{
     {
         string arrDayNames[] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
         return arrDayNames[DayOfWeekOrder];
+    }
+    enDateCompare CompareTwoDates(Date::stDate DateOne, Date::stDate DateTwo)
+    {
+
+        if (Date::checker::isDateOneBeforeDateTwo(DateOne, DateTwo))
+        {
+            return enDateCompare::Before;
+        }
+        else if (Date::checker::isDateOneEqualDateTwo(DateOne, DateTwo))
+        {
+            return enDateCompare::Equal;
+        }
+        return enDateCompare::After;
     }
 
     namespace Increase{
@@ -384,7 +451,22 @@ namespace Date{
        }
    }
 
-  
+   int calculateActualVacationDays(stPeriod Period)
+   {
+
+       int VacationDays = 0;
+       while (Date::checker::isDateOneBeforeDateTwo(Period.DateFrom, Period.DateTo))
+       {
+           if (Date::checker::isBusinessDay(Period.DateFrom))
+           {
+               VacationDays++;
+           }
+           Period.DateFrom = Date::Increase::IncreaseDateByOneDay(Period.DateFrom);
+       }
+       return VacationDays;
+   }
+
+
 
     int GetDifferenceInDays(Date::stDate DateOne, Date::stDate DateTwo, bool IncludeEndDay = false)
     {
@@ -422,6 +504,12 @@ namespace Date{
         }
         return IncludeEndDay ? ++DiffDays : DiffDays;
     }
+
+    int calculatePeriodLength(Date::stPeriod Period, bool IncludeLastDay=false){
+    
+        return Date::GetDifferenceInDays(Period.DateFrom, Period.DateTo, IncludeLastDay);
+    }
+
     stDate GetCurrentDate()
     {
         stDate Date;
@@ -433,5 +521,24 @@ namespace Date{
         Date.Month = now->tm_mon + 1;
         Date.Day = now->tm_mday;
         return Date;
+    }
+    namespace Convert{
+        Date::stDate ConvertStringToDate(string StringDate)
+        {
+
+            Date::stDate stDate;
+
+            vector<string> vDate = String::splitString(StringDate, "/");
+
+            stDate.Day = stoi(vDate[0]);
+            stDate.Month = stoi(vDate[1]);
+            stDate.Year = stoi(vDate[2]);
+
+            return stDate;
+        }
+
+        string ConvertDateToString(Date::stDate Date, string delim ="/") {
+            return to_string(Date.Day) + delim + to_string(Date.Month) + delim + to_string(Date.Year);
+        }
     }
 }
