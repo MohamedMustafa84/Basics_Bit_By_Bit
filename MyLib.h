@@ -3,14 +3,15 @@
 #include <iostream>
 #include <limits>
 #include <cstdlib>
-using namespace std;
+#include <vector>
+using namespace std; 
 
 namespace UserInputs
 {
      int ReadNumber(string Message)
     {
         int Number;
-        cout << Message;
+        cout <<" "<< Message;
         cin >> Number;
         cout << "\n";
         while (cin.fail())
@@ -99,4 +100,46 @@ namespace Invert{
     }
 }
 
+
+namespace String {
+
+    vector<string> splitString(string Str, string delim)
+    {
+        vector<string> vString;
+
+        int position = 0;
+        string Word = "";
+
+        while ((position = Str.find(delim)) != string::npos)
+        {
+            Word = Str.substr(0, position);
+
+            if (Word != "")
+            {
+                vString.push_back(Word);
+            }
+            Str.erase(0, position + delim.length());
+        }
+        if (Str != "")
+        {
+            vString.push_back(Str);
+        }
+
+        return vString;
+    }
+
+    string Replace_Word_In_String(string Str, string StringToReplace, string StrReplaceTo)
+    {
+
+        int position = Str.find(StringToReplace);
+
+        while (position != std::string::npos)
+        {
+            Str.replace(position, StringToReplace.length(), StrReplaceTo);
+            position = Str.find(StringToReplace);
+        }
+
+        return Str;
+    }
+}
 
