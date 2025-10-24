@@ -14,7 +14,7 @@ using namespace std;
 //   & 00011001
 //    ___________
 //     00001000 = 8(in decimal)
-
+ 
 
 
 
