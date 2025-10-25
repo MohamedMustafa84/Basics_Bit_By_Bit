@@ -1,6 +1,6 @@
 # Programming Advices
 
-This repository contains the path I followed to learn programming and its foundations in a healthy way, presented by **Dr. Muhammad Abu Hudhud**, who has more than **29 years of experience** in the field of programming and management, and is the founder of the **Programming Advices** platform
+This repository contains the path I followed to learn programming and its foundations in a healthy way, presented by **Dr. Muhammad Abu Hudhud**, who has more than **29 years of experience** in the field of programming and management, and is the founder of the **Programming Advices** platform.
 platform link  https://programmingadvices.com
 
 > **Note:** This repository only contains my practical solutions and projects.  
@@ -86,3 +86,36 @@ platform link  https://programmingadvices.com
   2. **Bank Project (Part 2):** Adds features like withdrawal, deposit, and viewing total balances.  
 
 ---
+### Course 08 – Algorithms and Problem Solving (Level 4)
+- Contains **65 problems** of varying difficulty.  
+- Focuses mainly on:
+  - **String manipulation**  
+  - **Working with dates**  
+- Includes two projects:
+  1. **Bank Project (Part 3):**  
+     An extension of the banking system from *Course 07*, upgraded to a **multi-user system** where each user has different permissions.  
+  2. **ATM Project:**  
+     A small project that simulates an **Automated Teller Machine** with core features such as withdrawal, deposit, and balance inquiry.
+
+---
+
+### Course 09 – Essential Fundamentals for Every Programmer (Level 2)
+- In this course, I learned many **core programming and networking concepts**, including:
+  1. Networks  
+  2. Servers and server types  
+  3. Data transfer  
+  4. Transmission Control Protocol (TCP)  
+  5. IP addresses and IP types  
+  6. Ports and Sockets  
+  7. MAC address and VPN  
+  8. Internet vs. WWW  
+  9. HTTP vs. HTTPS protocols  
+  10. Domain names  
+  11. URL and FTP  
+  12. API, XML, and JSON  
+  13. GUID  
+  14. 3-Tier Architecture  
+  15. Business Intelligence  
+
+---
+
