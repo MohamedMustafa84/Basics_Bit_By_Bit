@@ -19,14 +19,25 @@ class clsAddress{
 
 // for instance
 
-        clsAddress(string AddressLine1, string AddressLine2, string POBox, string ZipCode){
-            _AddressLine1 = AddressLine1;
-            _AddressLine2 = AddressLine2;
-            _POBox = POBox;
-            _ZipCode = ZipCode;
-        }
+    clsAddress(string AddressLine1, string AddressLine2, string POBox, string ZipCode){
+        _AddressLine1 = AddressLine1;
+        _AddressLine2 = AddressLine2;
+        _POBox = POBox;
+        _ZipCode = ZipCode;
+    }
 
-        void SetAddressLine1(string AddressLine1)
+
+    // Copy Constructor
+    // Complier did this
+    clsAddress(clsAddress &Old_obj)
+    {
+        _AddressLine1 =Old_obj.AddressLine1();
+        _AddressLine2 = Old_obj.AddressLine2();
+        _POBox = Old_obj.POBox();
+        _ZipCode = Old_obj.ZipCode();
+    }
+
+    void SetAddressLine1(string AddressLine1)
     {
         _AddressLine1 = AddressLine1;
     }
@@ -80,5 +91,10 @@ int main(){
 
     clsAddress Person1("Queen Alia Street","B204","11148","6544");
     Person1.printAddressDetails();
+
+    // Copy Constructor
+    
+    // The Compiler Handle the Copy 
+    clsAddress Person2=Person1;
     return  0;
 }
