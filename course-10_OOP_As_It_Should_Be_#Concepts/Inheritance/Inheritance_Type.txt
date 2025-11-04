@@ -1,0 +1,51 @@
+Inheritance Type 
+
+1-single Inheritance :
+ when One class inherit the other one 
+ for instance : 
+ class B inherit Class A 
+
+
+ 2- Multi Level Inheritance :
+
+ for example :
+ class B inherit Class A  and class C inherit class B 
+
+3-Hierarchical Inheritance:
+
+example:
+ 
+ when class A inherited By B ,C,D,example
+
+                            A
+    ________________________|____________________
+    |           |           |            |       |
+    B           C           D            E       F
+
+
+4-Multiple Inheritance:
+when One class inherit Two Class 
+
+Note : this type of Inheritance is not supported at the New Programming languages  Coz it make the code complex .
+
+            A                B
+            |________________|
+                    |
+                    C
+
+
+
+5-Hybrid Inheritance :
+
+it More complex than Multiple Inheritance And Also Not supported At The New Programming Language For the Same reason
+
+One Class Inherited By Two Classes And this Two Classes Inherited By One Calss 
+
+
+                    A
+        ____________|____________
+        |                       | 
+        B                       C
+        |_______________________|
+                    |
+                    D
