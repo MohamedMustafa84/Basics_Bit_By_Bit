@@ -1,0 +1,25 @@
+Polymorphism Means Many Forms
+
+with the Same Function we  can do different Thing based on the situation
+
+
+its allows us to create consistent code
+
+its Can be done Through :
+
+1-Function Overriding 
+2-Function Overloading
+3-Virtual Function
+
+4-Operator Overriding :
+For Instance:
+int a=10;
+int b=20;
+string S1="Mohamed";
+string S2="Mustafa";
+
+when you Write a + b  The Compiler Will Sum a With b
+
+
+and when you Write S1 + S2 The Compiler Will concatenate the First String with The Other One 
+
