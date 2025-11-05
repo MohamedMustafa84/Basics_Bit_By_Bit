@@ -1,0 +1,12 @@
+------------------------------------------------------------------------------
+   |  structure                    |          class                            |
+ 1 |keyword :struct                |  keyword :class                           |
+ 2 | Default :Public               |  Default :Private                         |
+ 3 | Purpose : grouping Data       | data abstraction and inheritance and More |
+ 4 | value type store in the stack | Reference type store in the heap          |
+ 5 | use for small thing           | for big size                              |
+ 6 | Only parametrize constructor  |  all type of constructor                  |
+
+ Note : the structure can hold a method put it not preferred to use it for that 
+ if you have small data use the structure and if this data contain one method then you should use the class 
+ to take his benefits.      
