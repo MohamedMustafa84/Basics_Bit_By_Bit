@@ -98,6 +98,7 @@ class clsString{
         {
             Str[i] = tolower(Str[i]);
         }
+        return Str;
     }
 
     void LowerAllString(){
