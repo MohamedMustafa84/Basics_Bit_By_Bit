@@ -5,11 +5,11 @@
 using namespace std ;
 
 class clsDate{
-    short _Day = 1;
-    short _Month=1;
-    short _Year = 1900;
+    short _Day;
+	short _Month;
+	short _Year;
 
-    public :
+public:
     clsDate(){
         time_t t = time(0);
         tm *now = localtime(&t);

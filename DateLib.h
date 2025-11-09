@@ -53,30 +53,6 @@ namespace Date{
         return formattedDate;
     }
 
-    stDate ReadFullDate()
-    {
-        stDate Date;
-        Date.Year = UserInputs::ReadPositiveNumber("Please Enter The Year  : ");
-        Date.Month = UserInputs::ReadNumberInRange("Please Enter The Month", 1, 12);
-
-        short NumberOfDaysInMonth = NumberOfDaysInAMonth(Date.Month, Date.Year);
-
-        Date.Day = UserInputs::ReadNumberInRange("Please Enter The Day ",1, NumberOfDaysInMonth);
-
-
-        return Date;
-    }
-
-    stPeriod ReadPeriod(string PeriodName)
-    {
-        stPeriod Period;
-        cout << "Please Enter " << PeriodName << " Start  Date :\n";
-        Period.DateFrom = Date::ReadFullDate();
-        cout << "Now Enter The End " << PeriodName << " Date :\n";
-        Period.DateTo = Date::ReadFullDate();
-
-        return Period;
-    }
 
     namespace checker
     {
