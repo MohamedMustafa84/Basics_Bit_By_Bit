@@ -184,10 +184,7 @@ class clsString{
         {
             Word = Str.substr(0, position);
 
-            if (Word != "")
-            {
-                vString.push_back(Word);
-            }
+            vString.push_back(Word);
             Str.erase(0, position + delim.length());
         }
         if (Str != "")
