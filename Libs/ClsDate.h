@@ -20,8 +20,8 @@ public:
 
     clsDate(string sDate){
         vector<string> vDate;
-        vDate = clsString::split(sDate, "/");
-        _Day = stoi(vDate[0]);
+		vDate = clsString::Split(sDate, "/");
+		_Day = stoi(vDate[0]);
         _Month = stoi(vDate[1]);
         _Year = stoi(vDate[2]);
     }
