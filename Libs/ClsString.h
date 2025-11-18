@@ -23,7 +23,6 @@ class clsString{
         return _Value;
     }
 
-
 //to use the function without the Object we make it static 
 // this is general method
     static short CountWords(string S)
@@ -173,7 +172,7 @@ class clsString{
         return CountVowels(_Value);
     }
 
-    static vector<string> split(string Str, string delim)
+    static vector<string> Split(string Str, string delim)
     {
         vector<string> vString;
 
@@ -195,8 +194,8 @@ class clsString{
         return vString;
     }
 
-    vector<string> split( string delim){
-        return split(_Value, delim);
+    vector<string> Split( string delim){
+        return Split(_Value, delim);
     }
 
     static string TrimLeft(string Str)
