@@ -185,29 +185,8 @@ static vector<string> Split(const string& str, const string& delim="#//#")
 
     while ((end = str.find(delim, start)) != string::npos)
     {
-<<<<<<< HEAD
         result.push_back(str.substr(start, end - start));
         start = end + delim.length();
-=======
-        vector<string> vString;
-
-        int position = 0;
-        string Word = "";
-
-        while ((position = Str.find(delim)) != string::npos)
-        {
-            Word = Str.substr(0, position);
-
-            vString.push_back(Word);
-            Str.erase(0, position + delim.length());
-        }
-        if (Str != "")
-        {
-            vString.push_back(Str);
-        }
-
-        return vString;
->>>>>>> 5418448 (rewrite the Readme  file)
     }
 
     result.push_back(str.substr(start));
