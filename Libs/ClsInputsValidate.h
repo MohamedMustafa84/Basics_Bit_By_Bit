@@ -79,6 +79,14 @@ class clsInputValidate{
         return false;
     }
 
+    static  string ReadString()
+    {
+        string Str;
+        // Usage std::ws will extract all the whitespace character
+        getline(cin >> ws, Str);
+        return Str;
+    }
+
     static int ReadIntNumber(string ErrorMessage = "Invalid Number, Enter again\n")
     {
         int Number;
@@ -128,46 +136,55 @@ class clsInputValidate{
         return Number;
     }
 
-    static int ReadPositiveIntNumber(string message , string ErrorMessage = "The Number Most Be Greater Than Zero Please Retry : ")
+    static short ReadShortNumber(string ErrorMessage = "Invalid Number, Enter again\n")
     {
-        int Number = ReadIntNumber(message);
-        while (Number <= 0)
+        short Number;
+        while (!(cin >> Number))
         {
-            Number = ReadIntNumber(ErrorMessage);
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << ErrorMessage;
         }
         return Number;
     }
 
-    static short ReadPositiveShortNumber(string message, string ErrorMessage = "The Number Most Be Greater Than Zero Please Retry : ")
+    static short ReadShortNumberBetween(short From, short To, string ErrorMessage = "Number is not within range, Enter again:\n")
     {
-        short Number = ReadIntNumber(message);
-        while (Number <= 0)
+        short Number = ReadShortNumber();
+
+        while (!IsNumberBetween(Number, From, To))
         {
-            Number = ReadIntNumber(ErrorMessage);
+            cout << ErrorMessage;
+            Number = ReadShortNumber();
         }
         return Number;
     }
 
-    static float ReadPositiveFloatNumber(string message, string ErrorMessage = "The Number Most Be Greater Than Zero Please Retry : ")
+    static float ReadFloatNumber(string ErrorMessage = "Invalid Number, Enter again\n")
     {
-        float Number = ReadIntNumber(message);
-        while (Number <= 0)
+        float Number;
+        while (!(cin >> Number))
         {
-            Number = ReadIntNumber(ErrorMessage);
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << ErrorMessage;
         }
         return Number;
     }
 
-    static double ReadPositiveDoubleNumber(string message, string ErrorMessage = "The Number Most Be Greater Than Zero Please Retry : ")
+    static float ReadFloatNumberBetween(float From, float To, string ErrorMessage = "Number is not within range, Enter again:\n")
     {
-        double Number = ReadIntNumber(message);
-        while (Number <= 0)
+        float Number = ReadFloatNumber();
+
+        while (!IsNumberBetween(Number, From, To))
         {
-            Number = ReadIntNumber(ErrorMessage);
+            cout << ErrorMessage;
+            Number = ReadFloatNumber();
         }
         return Number;
     }
 
+    
     static bool IsValidDate(clsDate Date)
     {
         return clsDate::IsValidDate(Date);
