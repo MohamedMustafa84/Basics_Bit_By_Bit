@@ -14,8 +14,8 @@ public:
         time_t t = time(0);
         tm *now = localtime(&t);
         _Day = now->tm_mday;
-        _Month = now->tm_mon=1;
-        _Year = now->tm_year = 1900;
+        _Month = now->tm_mon+1;
+        _Year = now->tm_year +1900;
     }
 
     clsDate(string sDate){
@@ -105,7 +105,8 @@ public:
                     return false;
             }
         }
-    }
+		return true;
+	}
 
     bool IsValid()
     {
@@ -140,7 +141,7 @@ public:
 
   static short NumberOfDaysInAYear(short Year)
   {
-      return IsLeapYear(Year) ? 365 : 364;
+      return IsLeapYear(Year) ? 366 : 365;
   }
 
   short NumberOfDaysInAYear()
@@ -175,7 +176,7 @@ public:
 
   int NumberOfSecondsInAYear()
   {
-      return NumberOfSecondsInAYear();
+      return NumberOfSecondsInAYear(_Year);
   }
 
   static short NumberOfDaysInAMonth(short Month, short Year)
@@ -732,7 +733,7 @@ public:
 
 	void DecreaseDateByOneDay()
 	{
-		DecreaseDateByOneDay(*this);
+		*this = DecreaseDateByOneDay(*this);
 	}
 
 	static clsDate DecreaseDateByOneWeek(clsDate &Date)
