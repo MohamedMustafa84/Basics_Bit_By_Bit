@@ -55,7 +55,6 @@ void DeleteLastNode(node *&head)
     if(Current->Next == NULL){
         head = NULL;
         delete Current;
-        // impelementation
         return;
     }
 
