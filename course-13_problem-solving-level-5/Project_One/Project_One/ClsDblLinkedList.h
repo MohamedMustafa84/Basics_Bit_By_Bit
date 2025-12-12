@@ -194,4 +194,59 @@ class clsDblLinkedList{
         }
 
 
+        bool IsEmpty(){
+            return (_Size == 0);
+        }
+
+        void Clear()
+        {
+            node *cur = head;
+            while (cur != nullptr)
+            {
+                node *next = cur->next;
+                delete cur;
+                cur = next;
+            }
+            head = nullptr;
+            _Size = 0;
+        }
+
+        void Reverse(){
+             node *Current=head;
+             node *temp = nullptr;
+
+             while(Current !=nullptr){
+                temp=Current->prev;
+                Current->prev = Current->next;
+                Current->next = temp;
+
+                Current = Current->prev;
+             }
+
+             if(temp !=nullptr){
+                 head = temp->prev;
+             }
+        }
+
+        node *GetNode(int Index){
+            int Counter = 0;
+
+            if (Index > _Size-1 || Index < 0)
+            {
+                return NULL;
+            }
+
+            node *Current = head;
+
+            while(Current !=NULL && Current->next !=NULL){
+                
+                if(Counter == Index ){
+                    break;
+                }
+                Current = Current->next;
+                Counter++;
+            }
+
+            return Current;
+        }
 };

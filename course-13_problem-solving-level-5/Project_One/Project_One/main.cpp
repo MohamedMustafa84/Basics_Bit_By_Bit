@@ -60,6 +60,74 @@ int main(){
     
     
     // Extention 1 : Add size Method
+    
+    // MyDblLinkedList.InsertAtBeginning(5);
+    // MyDblLinkedList.InsertAtBeginning(4);
+    // MyDblLinkedList.InsertAtBeginning(3);
+    // MyDblLinkedList.InsertAtBeginning(2);
+    // MyDblLinkedList.InsertAtBeginning(1);
+    
+    // cout << "Linked List Content :\n";
+    // MyDblLinkedList.printList();
+    
+    // cout << "\n the number of items in the linked list  = " << MyDblLinkedList.Size();
+    
+    
+    
+    
+    // Extention 2 : Add method To Check If The linked List Empty
+    
+    // cout << "is the linked list Empty ? \n";
+    
+    // cout << (MyDblLinkedList.IsEmpty()? "Yes List is Empty \n" : "No List is Not Empty \n");
+    
+    // MyDblLinkedList.InsertAtBeginning(3);
+    // MyDblLinkedList.InsertAtBeginning(2);
+    // MyDblLinkedList.InsertAtBeginning(1);
+    // cout << "\nAfter Adding Some Element  is it still empty ? \n" << endl;
+    // cout << (MyDblLinkedList.IsEmpty()? "Yes List is Empty \n" : "No List is Not Empty \n");
+    
+    
+    
+    
+    
+    // Extention 3 : Clear the linked list
+    
+    // MyDblLinkedList.InsertAtBeginning(3);
+    // MyDblLinkedList.InsertAtBeginning(2);
+    // MyDblLinkedList.InsertAtBeginning(1);
+
+    // cout << "Linked list content :\n";
+    // MyDblLinkedList.printList();
+    
+    // cout << "Number of Items in the linked list is " << MyDblLinkedList.Size();
+    
+    // cout << "\nExecuting Clear()\n";
+    // MyDblLinkedList.Clear();
+    
+    // MyDblLinkedList.printList();
+    // cout << "Number of Items in the linked list is " << MyDblLinkedList.Size();
+    
+    
+    
+    // Extention 4 : Reverse the linked list
+    
+    // MyDblLinkedList.InsertAtBeginning(5);
+    // MyDblLinkedList.InsertAtBeginning(4);
+    // MyDblLinkedList.InsertAtBeginning(3);
+    // MyDblLinkedList.InsertAtBeginning(2);
+    // MyDblLinkedList.InsertAtBeginning(1);
+
+    // cout <<"Linked List Content :\n";
+    // MyDblLinkedList.printList();
+
+    // MyDblLinkedList.Reverse();
+
+    // cout << "\n The linked list After the Reverse :\n";
+    // MyDblLinkedList.printList();
+
+
+    // Extention 5 : Get Node By Index
 
     MyDblLinkedList.InsertAtBeginning(5);
     MyDblLinkedList.InsertAtBeginning(4);
@@ -67,10 +135,14 @@ int main(){
     MyDblLinkedList.InsertAtBeginning(2);
     MyDblLinkedList.InsertAtBeginning(1);
 
-    cout << "Linked List Content :\n";
+    cout <<"Linked List Content :\n";
     MyDblLinkedList.printList();
 
-    cout << "\n the number of items in the linked list  = " << MyDblLinkedList.Size();
+    clsDblLinkedList<int>::node *NodeToFind;
+
+    NodeToFind = MyDblLinkedList.GetNode(3);
+
+    cout << "the node at the index 3 is " << NodeToFind->value << endl;
 
     return 0;
 }
