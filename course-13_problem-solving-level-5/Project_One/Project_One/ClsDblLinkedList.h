@@ -249,4 +249,42 @@ class clsDblLinkedList{
 
             return Current;
         }
+
+
+
+        T GetItem(int Index){
+
+            node *ItemNode = GetNode(Index);
+
+            if (ItemNode ==NULL){
+                return NULL;
+            }else{
+                return ItemNode->value;
+            }
+        }
+
+        bool Update(int Index, T newValue){
+            node *NodeToUpdate =GetNode(Index);
+            if(NodeToUpdate != NULL){
+                NodeToUpdate->value = newValue;
+                return true;
+            }
+            return false;
+        }
+
+        bool InsertAfter(int Index , T Value ){
+
+            node *ItemNode=GetNode(Index);
+
+            if(ItemNode !=NULL){
+                
+                InsertAfter(ItemNode, Value);
+
+                return true;
+            }
+            return false;
+        }
+
+
+
 };
