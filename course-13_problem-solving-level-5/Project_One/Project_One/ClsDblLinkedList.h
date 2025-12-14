@@ -81,6 +81,8 @@ class clsDblLinkedList{
 
         void InsertAtEnd(T value)
         {
+
+            _Size++;
             node *newNode = new node();
 
             newNode->value = value;
@@ -101,7 +103,7 @@ class clsDblLinkedList{
             }
 
             Current->next = newNode;
-            _Size++;
+            
 
             return;
         }
@@ -257,7 +259,7 @@ class clsDblLinkedList{
             node *ItemNode = GetNode(Index);
 
             if (ItemNode ==NULL){
-                return NULL;
+                return 0;
             }else{
                 return ItemNode->value;
             }
