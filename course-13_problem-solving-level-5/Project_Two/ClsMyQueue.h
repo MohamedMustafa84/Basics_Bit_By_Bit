@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include "../Project_One/Project_One/ClsDblLinkedList.h"
+#include "../Project_One/ClsDblLinkedList.h"
 template <class T>
 
 class clsMyQueue{
