@@ -122,10 +122,18 @@ MyDynamicArray3.InsertBefore(30,300);
     MyDynamicArray3.printList();
     
     
-    // Extention 13 Insert Before specific Item
+    // Extention 13 Insert At The End 
     MyDynamicArray3.InsertAtEnd(70);
 
     cout <<"Array After Inserting 70 At The End :\n";
+    MyDynamicArray3.printList();
+
+
+    // Extention 14 Insert After specific Item
+
+    MyDynamicArray3.InsertAfter(40,400);
+
+    cout<<"Array After Inserting 400 After 40 :\n";
     MyDynamicArray3.printList();
 
     return 0;
