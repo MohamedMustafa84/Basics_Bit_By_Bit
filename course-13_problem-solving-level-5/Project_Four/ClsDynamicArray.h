@@ -206,13 +206,13 @@ class clsDynamicArray {
             return InsertAt (_Size,Item);
         }
 
-            bool InsertBefore(T ItemToInsertBefore, T NewItem){
-                int IndexToInsertBefore = Find(ItemToInsertBefore);
+        bool InsertBefore(T ItemToInsertBefore, T NewItem){
+            int IndexToInsertBefore = Find(ItemToInsertBefore);
 
-        if (IndexToInsertBefore == -1)
-        {
-            return false;
-        }
+            if (IndexToInsertBefore == -1)
+            {
+                return false;
+            }
 
             if (IndexToInsertBefore == 0)
             {
@@ -221,5 +221,20 @@ class clsDynamicArray {
 
             return InsertAt(IndexToInsertBefore - 1, NewItem);
         }
+
+        bool InsertAfter(T ItemToInsertAfter, T NewItem)
+        {
+            int IndexToInsertAfter = Find(ItemToInsertAfter);
+
+            if (IndexToInsertAfter == -1)
+            {
+                return false;
+            }
+
+            return InsertAt(IndexToInsertAfter+1, NewItem);
+        }
+
+
+
 };
     
