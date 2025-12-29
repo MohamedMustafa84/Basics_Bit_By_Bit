@@ -158,9 +158,19 @@ It focuses on both **theoretical foundations** and **practical operations** on c
 10. **Map & Union**
 
 
+Course Thirteen: Algorithms and Problem Solving, Level Five:
+
+I created eight small projects on data structures, as follows:
+1- MyLinked List library with some features
+2- My Queue library based solely on the MyLinked List I created in the first project
+3- My Stack library based solely on the My Queue library
+4- My Dynamic Array library with some features
+5- My Queue library, but this time based on My Dynamic Array
+6- My Stack library based on My Dynamic Array
+7- Undo Redo Project using C++ stack
+8- Queue Line System
 
 ---
-
 
 ## 💼 Projects Overview
 
@@ -171,6 +181,8 @@ It focuses on both **theoretical foundations** and **practical operations** on c
 | Number System Converter | Converts between binary, decimal, and hexadecimal systems | 05 (Extra) |
 | Bank System (v1–v3) | Progressive system: CRUD → Transactions → Multi-user | 07–08 |
 | ATM | Simulated ATM with withdrawal/deposit functionalities | 08 |
+| Undo / Redo System | Undo and redo functionality using C++ stack | 13 |
+| Queue Line System | Real-world queue line simulation | 13 |
 
 ---
 
@@ -181,7 +193,11 @@ It focuses on both **theoretical foundations** and **practical operations** on c
 - File I/O, pointers, and memory management  
 - Clean code principles and modular design  
 - Object-Oriented Programming fundamentals  
-- Network and system fundamentals (TCP/IP, APIs, Servers)
+- Network and system fundamentals (TCP/IP, APIs, Servers)  
+- Data Structures fundamentals and performance analysis  
+- Time & Space Complexity (Big O Notation)  
+- Implementing core data structures from scratch  
+- Building reusable libraries and understanding data structure dependencies  
 
 ---
 
