@@ -181,11 +181,8 @@ I created eight small projects on data structures, as follows:
 | Number System Converter | Converts between binary, decimal, and hexadecimal systems | 05 (Extra) |
 | Bank System (v1–v3) | Progressive system: CRUD → Transactions → Multi-user | 07–08 |
 | ATM | Simulated ATM with withdrawal/deposit functionalities | 08 |
-<<<<<<< HEAD
 | Undo / Redo System | Undo and redo functionality using C++ stack | 13 |
 | Queue Line System | Real-world queue line simulation | 13 |
-=======
->>>>>>> 5418448 (rewrite the Readme  file)
 
 ---
 
@@ -196,15 +193,11 @@ I created eight small projects on data structures, as follows:
 - File I/O, pointers, and memory management  
 - Clean code principles and modular design  
 - Object-Oriented Programming fundamentals  
-<<<<<<< HEAD
 - Network and system fundamentals (TCP/IP, APIs, Servers)  
 - Data Structures fundamentals and performance analysis  
 - Time & Space Complexity (Big O Notation)  
 - Implementing core data structures from scratch  
 - Building reusable libraries and understanding data structure dependencies  
-=======
-- Network and system fundamentals (TCP/IP, APIs, Servers)
->>>>>>> 5418448 (rewrite the Readme  file)
 
 ---
 
