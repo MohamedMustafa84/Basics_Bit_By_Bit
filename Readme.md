@@ -136,6 +136,29 @@ It focuses on mastering **classes, inheritance, encapsulation, and polymorphism*
 17. Parameterized Constructors with Arrays of Objects  
 18. Class vs. Structure — Key Differences
 
+### Course 12 – Data Structures (Level 1)
+
+This course introduces **Data Structures**, explaining **why they are essential**, how they impact program performance, and how to use them effectively in C++.  
+It focuses on both **theoretical foundations** and **practical operations** on common data structures.
+
+**Main Topics:**
+
+1. Things Affecting Program Speed & Efficiency  
+2. Time & Space Complexity — **Big O Notation**  
+3. Binary Data Structures  
+4. Array & Matrix Data Structures  
+5. Stack & Vector Data Structures  
+6. Queue Data Structures  
+7. **Singly Linked Lists**  
+   - Insert  
+   - Find  
+   - Delete  
+8. **Doubly Linked Lists** with full operations  
+9. **Circular Linked Lists** & Abstract Data Types (ADT)  
+10. **Map & Union**
+
+
+
 ---
 
 
