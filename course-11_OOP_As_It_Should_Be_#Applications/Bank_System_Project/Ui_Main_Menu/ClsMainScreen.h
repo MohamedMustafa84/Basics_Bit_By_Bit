@@ -6,6 +6,7 @@
 #include "ClsAddNewClientScreen.h"
 #include "ClsDeleteClientScreen.h"
 #include "ClsUpdateClientScreen.h"
+#include "ClsFindClientScreen.h"
 
 using namespace std;
 
@@ -47,7 +48,7 @@ class clsMainScreen :protected clsScreen{
 
     static void _ShowFindClientsScreen()
     {
-        cout << "Find Clients Screen Will Be Here" << endl;
+        clsFindClient::FindClient();
     }
 
     static void _ShowTransactionMenuScreen()
