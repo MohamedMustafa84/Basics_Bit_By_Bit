@@ -2,8 +2,10 @@
 #include <iomanip>
 #include "../../../Libs/ClsInputsValidate.h"
 #include "ClsScreen.h"
-#include "ClsClientsList.h"
+#include "ClsClientsListScreen.h"
 #include "ClsAddNewClientScreen.h"
+#include "ClsDeleteClientScreen.h"
+#include "ClsUpdateClientScreen.h"
 
 using namespace std;
 
@@ -35,12 +37,12 @@ class clsMainScreen :protected clsScreen{
 
     static void _ShowDeleteClientsScreen()
     {
-        cout << "Delete Clients Screen Will Be Here" << endl;
+        clsDeleteClient::DeleteClient();
     }
 
     static void _ShowUpdateClientsScreen()
     {
-        cout << "Update Clients Screen Will Be Here" << endl;
+        clsUpdateClient::UpdateClient();
     }
 
     static void _ShowFindClientsScreen()
