@@ -4,6 +4,7 @@
 #include <vector>
 #include "../../Libs/clsString.h" 
 #include "ClsPerson.h"
+#include <cmath>
 #include <fstream>
 
 
@@ -190,7 +191,7 @@ class clsBankClient:public clsPerson{
                 _AccountNumber = AccountNumber;
             }
 
-            float AccountBalance()const
+            float AccountBalance()
             {
                 return _AccountBalance;
             }
@@ -199,7 +200,7 @@ class clsBankClient:public clsPerson{
                 _AccountBalance = AccountBalance;
             }
 
-            string PinCode()const
+            string PinCode()
             {
                 return _PinCode;
             }
@@ -385,5 +386,22 @@ class clsBankClient:public clsPerson{
                 }
 
                 return Total;
+            }
+
+            bool Deposit(float Amount){
+
+                this->_AccountBalance += abs(Amount);
+                this->Save();
+                return true;
+            }
+            
+             bool Withdraw(float Amount){
+
+                if(Amount >this->_AccountBalance){
+                    return false;
+                }
+                this->_AccountBalance -= abs(Amount);
+                this->Save();
+                return true;
             }
         };
