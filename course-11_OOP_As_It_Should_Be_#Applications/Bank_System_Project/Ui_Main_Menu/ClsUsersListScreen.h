@@ -10,10 +10,11 @@ class clsUsersList : protected clsScreen
 private:
     static void PrintUserRecordLine(clsUser User)
     {
+        cout << "| " << left << setw(20) << User.UserName();
         cout << "| " << left << setw(20) << User.FullName();
         cout << "| " << left << setw(15) << User.Phone();
         cout << "| " << left << setw(25) << User.Email();
-        cout << "| " << left << setw(20) << User.Password();
+        cout << "| " << left << setw(15) << User.Password();
         cout << "| " << left << setw(20) << to_string(User.Permissions()) << endl;
     }
 
@@ -32,10 +33,11 @@ public:
 
         cout << "\n___________________________________________________________________________________________________________________\n";
 
-        cout << "| " << left << setw(15) << "Full Name";
-        cout << "| " << left << setw(20) << "Phone";
+        cout << "| " << left << setw(20) << "User Name";
+        cout << "| " << left << setw(20) << "Full Name";
+        cout << "| " << left << setw(15) << "Phone";
         cout << "| " << left << setw(25) << "Email";
-        cout << "| " << left << setw(20) << "Password";
+        cout << "| " << left << setw(15) << "Password";
         cout << "| " << left << setw(20) << "Permissions";
         cout << "\n___________________________________________________________________________________________________________________\n";
 
