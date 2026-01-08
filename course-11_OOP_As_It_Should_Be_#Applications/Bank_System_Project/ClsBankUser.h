@@ -133,25 +133,37 @@ class clsUser:public clsPerson{
 
 
 
-        void _AddNewClient(){
+        void _AddNewUser(){
            _AddDataLineToFile (_ConvertUserObjectToLine(*this));
         }
 
         void _AddDataLineToFile(string DataLine){
-            fstream ClientsFile;
+            fstream UsersFile;
 
-            ClientsFile.open("../Clients.txt", ios::out | ios::app);
+            UsersFile.open("../Users.txt", ios::out | ios::app);
 
-            if(ClientsFile.is_open()){
+            if(UsersFile.is_open()){
 
-                ClientsFile << DataLine << endl;
+                UsersFile << DataLine << endl;
 
-                ClientsFile.close();
+                UsersFile.close();
             }
 
         }
 
         public:
+            enum enPermissions
+            {
+                eAll = -1,
+                pListClients = 1,
+                pAddNewClient = 2,
+                pDeleteClient = 4,
+                pUpdateClient = 8,
+                pFindClient = 16,
+                pTransaction = 32,
+                pManageUsers = 64
+            };
+
             clsUser(enMode Mode, string FirstName, string LastName, string Email, string Phone, string UserName, string Password, int Permissions)
                 : clsPerson(FirstName, LastName, Email, Phone)
             {
@@ -197,18 +209,6 @@ class clsUser:public clsPerson{
             bool MarkedForDelete()
             {
                 return _MarkForDelete;
-            }
-
-            void Print()
-            {
-                cout << "\n User Card ";
-                cout << "\n-----------------------------------";
-                cout << "\nFull Name      : " << FullName();
-                cout << "\nEmail          : " << Email();
-                cout << "\n Phone         : " << Phone();
-                cout << "\nPassword       : " << _Password;
-                cout << "\n Permissions   : " << _Permissions;
-                cout << "\n-----------------------------------\n";
             }
 
             static clsUser Find(string UserName)
@@ -275,6 +275,31 @@ class clsUser:public clsPerson{
                 return (!User.IsEmpty());
             }
 
+
+             bool Delete(){
+                vector<clsUser> vUsers;
+                bool Deleted = false;
+
+                vUsers= _LoadUsersDataFromFile("../Users.txt");
+
+
+                    for (clsUser &User :vUsers ){
+                       
+
+                        if(User._UserName == _UserName){
+                            User._MarkForDelete = true;
+                            Deleted = true;
+                            break;
+                        }
+                    }
+
+                    _SaveUsersDataToFile(vUsers);
+
+                    *this = _GetEmptyUserObject();
+
+                    return Deleted;
+            }
+
             enum enSaveResult
             {
                 svFailEmptyObject = 0,
@@ -315,7 +340,7 @@ class clsUser:public clsPerson{
                     }
                     else
                     {
-                        _AddNewClient();
+                        _AddNewUser();
 
                         // We need to set the mode to update after add new
                         _Mode = enMode::UpdateMode;
@@ -334,29 +359,6 @@ class clsUser:public clsPerson{
             }
 
 
-
-            bool Delete(){
-                vector<clsUser> vUsers;
-                bool Deleted = false;
-
-                vUsers= _LoadUsersDataFromFile("../Users.txt");
-
-
-                    for (clsUser &User :vUsers ){
-
-                        if(User._UserName == _UserName){
-                            User._MarkForDelete = true;
-                            Deleted = true;
-                            break;
-                        }
-                    }
-
-                    _SaveUsersDataToFile(vUsers);
-
-                    *this = _GetEmptyUserObject();
-
-                    return Deleted;
-            }
 
             static vector <clsUser> GetUsersList(){
                 return _LoadUsersDataFromFile("../Users.txt");
