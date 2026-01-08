@@ -3,8 +3,8 @@
 #include "../../../Libs/ClsInputsValidate.h"
 #include "ClsScreen.h"
 #include "ClsUsersListScreen.h"
-// #include "ClsAddNewClientScreen.h"
-// #include "ClsDeleteClientScreen.h"
+#include "ClsAddNewUserScreen.h"
+#include "ClsDeleteUserScreen.h"
 // #include "ClsUpdateClientScreen.h"
 // #include "ClsFindClientScreen.h"
 using namespace std;
@@ -29,13 +29,12 @@ class clsManageUsersScreen : protected clsScreen
 
     static void _ShowAddNewUserScreen()
     {
-        cout <<"Add New User Will Be Here "<< endl;
+        clsAddNewUserScreen::AddNewUser();
     }
 
     static void _ShowDeleteUserScreen()
     {
-        // clsDeleteClient::DeleteClient();
-        cout << "Delete User Screen Will Be Here" << endl;
+        clsDeleteUser::DeleteUser();
     }
 
     static void _ShowUpdateUserScreen()
@@ -58,7 +57,7 @@ class clsManageUsersScreen : protected clsScreen
     static void _BackToManageUsersMenu()
     {
         char Key;
-        cout << setw(37) << left << "\nEnter Any Key to Back To Main Menu ...\n";
+        cout << setw(37) << left << "\nEnter Any Key to Back To Manage Users Menu ...\n";
         cin >> Key;
         // system("pause>0");
         ShowManageUsersScreen();
