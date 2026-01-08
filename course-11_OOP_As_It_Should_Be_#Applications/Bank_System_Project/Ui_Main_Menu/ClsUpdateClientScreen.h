@@ -61,6 +61,8 @@ class clsUpdateClient :protected clsScreen {
             case clsBankClient::enSaveResult::svFailEmptyObject:
                 cout << "\nError Account Was Not Saved Because Its Empty :-(";
                 break;
+                case clsBankClient::enSaveResult::svFailAccountNumberExists:
+                    cout <<"\nFail Account Number Exist "<<endl;
             
             }
         }
