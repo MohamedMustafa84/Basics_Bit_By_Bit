@@ -5,8 +5,8 @@
 #include "ClsUsersListScreen.h"
 #include "ClsAddNewUserScreen.h"
 #include "ClsDeleteUserScreen.h"
-// #include "ClsUpdateClientScreen.h"
-// #include "ClsFindClientScreen.h"
+#include "ClsUpdateUserScreen.h"
+#include "ClsFindUserScreen.h"
 using namespace std;
 
 class clsManageUsersScreen : protected clsScreen
@@ -39,14 +39,12 @@ class clsManageUsersScreen : protected clsScreen
 
     static void _ShowUpdateUserScreen()
     {
-        cout << "Update User Screen Will Be Here" << endl;
-        // clsUpdateClient::UpdateClient();
+        clsUpdateUser::UpdateUser();
     }
 
     static void _ShowFindUserScreen()
     {
-        // clsFindClient::FindClient();
-        cout << "Find User Screen Will Be Here" << endl;
+        clsFindUser::FindUser();
     }
 
     static void _ShowMainMenuScreen()
