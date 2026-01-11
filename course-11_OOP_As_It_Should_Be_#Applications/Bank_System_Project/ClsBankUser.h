@@ -122,8 +122,9 @@ class clsUser:public clsPerson{
 
             for (clsUser &User :_vUsers){
 
-                if(User.UserName() == UserName()){
-                    *this = User;
+                if (User.UserName() == _UserName)
+                {
+                    User = *this;
                     break;
                 }
             }
