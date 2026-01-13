@@ -10,9 +10,13 @@ class clsDeleteClient :protected clsScreen
 {
     public :
     static void DeleteClient(){
-    string AccountNumber;
+       
+        if (!CheckAccessRight(clsUser::enPermissions::pDeleteClient))
+        {
+            return;
+        }
 
-   
+    string AccountNumber;
     clsScreen::_DrawScreenHeader("Delete Client Screen");
 
     cout << "\nEnter Client Account Number\n";

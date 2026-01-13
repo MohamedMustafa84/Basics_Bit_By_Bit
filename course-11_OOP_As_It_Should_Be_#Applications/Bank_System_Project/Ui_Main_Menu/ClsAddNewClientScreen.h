@@ -3,11 +3,12 @@
 #include <iostream>
 #include "../ClsBankClient.h"
 #include "../../../Libs/ClsInputsValidate.h"
+#include "ClsScreen.h"
 using namespace std;
  
 
 
-class clsAddNewClientScreen
+class clsAddNewClientScreen :protected clsScreen
 {
     static void ReadClientInfo(clsBankClient &Client)
     {
@@ -30,6 +31,13 @@ class clsAddNewClientScreen
 
     
 static void AddNewClient(){
+
+    if (!CheckAccessRight(clsUser::enPermissions::pAddNewClient))
+    {
+        return;
+    }
+    clsScreen::_DrawScreenHeader("Add New Client Screen");
+
     string AccountNumber;
     cout <<"Enter Account Number : ";
     AccountNumber = clsInputValidate::ReadString();

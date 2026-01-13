@@ -11,9 +11,13 @@ class clsFindClient : protected clsScreen
 public:
     static void FindClient()
     {
-        string AccountNumber;
+        if (!CheckAccessRight(clsUser::enPermissions::pFindClient))
+        {
+            return;
+        }
 
         clsScreen::_DrawScreenHeader("Find Client Screen");
+        string AccountNumber;
 
         cout << "\nEnter Client Account Number\n";
         AccountNumber = clsInputValidate::ReadString();
