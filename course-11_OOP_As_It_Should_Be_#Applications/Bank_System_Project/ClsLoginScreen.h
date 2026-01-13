@@ -7,14 +7,13 @@
 
 class clsLoginScreen :protected clsScreen{
 
-    static void _Login(){
+    static bool _Login(){
         bool LoginFiled = false;
         string UserName = "", Password = "";
+        short LoginTrials = 3;
 
         do{
-            if(LoginFiled){
-                cout << "\nInvalid UserName/Password:\n";
-            }
+            
 
             cout << "\nEnter UserName : ";
             cin >> UserName;
@@ -23,15 +22,33 @@ class clsLoginScreen :protected clsScreen{
 
             CurrentUser = clsUser::Find(UserName, Password);
             LoginFiled = CurrentUser.IsEmpty();
-        } while (LoginFiled);
+
+             
+            if(LoginFiled){
+                LoginTrials--;
+                cout << "\nInvalid UserName/Password:\n";
+                cout << "You Have " << LoginTrials << " Trail(s) To Login \n";
+
+                
+            }
+
+            if (LoginTrials == 0)
+            {
+                cout << "\nYou Are Locked After " << LoginTrials << " Failed Trails :-(\n ";
+                cout << "Please Contact Your Admin \n";
+                return false;
+            }
+
+        } while (LoginFiled && LoginTrials >= 0);
 
         clsMainScreen::ShowMainMenuScreen();
+        return true;
     }
 
     public :
-         static void  ShowLoginScreen(){
+         static bool  ShowLoginScreen(){
 
              _DrawScreenHeader("Login Screen");
-             _Login();
+             return _Login();
          }
 };
