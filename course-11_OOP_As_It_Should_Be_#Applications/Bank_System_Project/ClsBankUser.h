@@ -365,4 +365,16 @@ class clsUser:public clsPerson{
                 return _LoadUsersDataFromFile("../Users.txt");
             }
 
+            bool CheckAccessPermission(enPermissions Permission)
+            {
+                if (this->Permissions() == enPermissions::eAll)
+                {
+                    return true;
+                }
+
+                if((Permission & this->Permissions() )== Permission){
+                    return true;
+                }
+                return false;
+            }
         };
