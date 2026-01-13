@@ -115,6 +115,10 @@ class clsUpdateUser : protected clsScreen
 public:
     static void UpdateUser()
     {
+        if (!CheckAccessRight(clsUser::enPermissions::pUpdateClient))
+        {
+            return;
+        }
 
         clsScreen::_DrawScreenHeader("Update User Screen");
         string UserName= "";
@@ -141,7 +145,7 @@ public:
         cout <<"\nAre Your Shower You Want To Update This User ?(Y/N) ";
         cin >> Answer;
         
-        if (!toupper(Answer)=='Y'){
+        if (toupper(Answer)!='Y'){
             return;
         }
 
