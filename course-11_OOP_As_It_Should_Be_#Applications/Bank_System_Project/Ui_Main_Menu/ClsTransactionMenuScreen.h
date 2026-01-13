@@ -80,7 +80,10 @@ class clsTransactionScreen : protected clsScreen
 public:
     static void ShowTransactionScreen()
     {
-
+        if (!CheckAccessRight(clsUser::enPermissions::pTransaction))
+        {
+            return;
+        }
         _DrawScreenHeader("Transaction Screen");
 
         cout << setw(37) << left << "" << "================================================\n";
