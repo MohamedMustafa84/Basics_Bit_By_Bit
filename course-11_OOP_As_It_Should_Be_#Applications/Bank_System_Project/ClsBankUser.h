@@ -248,7 +248,7 @@ class clsUser:public clsPerson{
 
                 fstream UsersFile;
 
-                UsersFile.open("../Users.txt", ios::in);
+                UsersFile.open("Users.txt", ios::in);
                 if (UsersFile.is_open())
                 {
 
