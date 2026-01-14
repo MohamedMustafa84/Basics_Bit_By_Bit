@@ -10,6 +10,7 @@
 #include "ClsTransactionMenuScreen.h"
 #include "ClsManageUsersScreen.h"
 #include "../ClsGlobal.h"
+#include "ClsRegisterLoginsScreen.h"
 using namespace std;
 
 
@@ -24,7 +25,8 @@ class clsMainScreen :protected clsScreen{
         eFindClient = 5,
         eShowTransactionMenu=6,
         eMangeUsers=7,
-        eExit = 8
+        eLoginRegister = 8,
+        eExit = 9
 
     };
 
@@ -58,7 +60,10 @@ class clsMainScreen :protected clsScreen{
         clsTransactionScreen::ShowTransactionScreen();
     }
 
-   
+    static void _ShowLoginRegisterScreen()
+    {
+        clsRegisterLoginScreen::ShowLoginsList();
+    }
 
     static void _ShowMangeUsersScreen()
     {
@@ -116,6 +121,11 @@ class clsMainScreen :protected clsScreen{
             _ShowUpdateClientsScreen();
             _BackToMainMenu();
             break;
+
+        case _enMainMenuOptions::eLoginRegister:
+            _ShowLoginRegisterScreen();
+            _BackToMainMenu();
+            break;
         case _enMainMenuOptions::eExit:
             _Logout();
             break;
@@ -140,10 +150,11 @@ class clsMainScreen :protected clsScreen{
              cout <<setw(37)<<left<<""<< "\t[5] Find Client \n";
              cout <<setw(37)<<left<<""<< "\t[6] Transaction Menu\n";
              cout <<setw(37)<<left<<""<< "\t[7] Mange Users \n";
-             cout <<setw(37)<<left<<""<< "\t[8] Logout \n";
+             cout <<setw(37)<<left<<""<< "\t[8] Login Register \n";
+             cout <<setw(37)<<left<<""<< "\t[9] Logout \n";
              cout << setw(37) << left << "" << "================================================\n";
 
-             cout << setw(37) << left << ""<<"\tChose What To Do From 1 to 8? ";
-             _PreformMainMenuOptions(_enMainMenuOptions(clsInputValidate::ReadNumberBetween(1,8)));
+             cout << setw(37) << left << ""<<"\tChose What To Do From 1 to 9? ";
+             _PreformMainMenuOptions(_enMainMenuOptions(clsInputValidate::ReadNumberBetween(1,9)));
          }
      };
