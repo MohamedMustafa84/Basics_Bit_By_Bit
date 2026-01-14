@@ -141,7 +141,7 @@ class clsUser:public clsPerson{
         void _AddDataLineToFile(string DataLine){
             fstream UsersFile;
 
-            UsersFile.open("../Users.txt", ios::out | ios::app);
+            UsersFile.open("Users.txt", ios::out | ios::app);
 
             if(UsersFile.is_open()){
 
@@ -162,7 +162,8 @@ class clsUser:public clsPerson{
                 pUpdateClient = 8,
                 pFindClient = 16,
                 pTransaction = 32,
-                pManageUsers = 64
+                pManageUsers = 64,
+                pRegisterLogin=128
             };
 
             clsUser(enMode Mode, string FirstName, string LastName, string Email, string Phone, string UserName, string Password, int Permissions)
@@ -219,7 +220,7 @@ class clsUser:public clsPerson{
 
                 fstream UsersFile;
 
-                UsersFile.open("../Users.txt", ios::in);
+                UsersFile.open("Users.txt", ios::in);
                 if (UsersFile.is_open())
                 {
 
