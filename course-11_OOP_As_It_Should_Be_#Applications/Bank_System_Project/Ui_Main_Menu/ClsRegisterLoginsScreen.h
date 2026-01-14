@@ -22,10 +22,14 @@ public:
     static void ShowLoginsList()
     {
 
+        if (!CheckAccessRight(clsUser::enPermissions::pRegisterLogin))
+        {
+            return;
+        }
+
         vector<clsRegisterLogins::_stLoginInfo> vUsersLoginsInfo;
         vUsersLoginsInfo = clsRegisterLogins::GetUsersLoginsData();
 
-        string Title = "\t  List Screen ";
 
         clsScreen::_DrawScreenHeader("Users Logins Info Screen");
 
