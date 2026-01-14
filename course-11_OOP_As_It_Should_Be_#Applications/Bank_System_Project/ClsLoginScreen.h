@@ -1,6 +1,7 @@
 #pragma once
 #include "Ui_Main_Menu/ClsMainScreen.h"
-#include "Ui_Main_Menu/ClsScreen.h"
+#include "Ui_Main_Menu/ClsScreen.h" 
+#include "ClsRegisterLogins.h"
 
 #include "ClsGlobal.h"
 
@@ -40,6 +41,8 @@ class clsLoginScreen :protected clsScreen{
             }
 
         } while (LoginFiled && LoginTrials >= 0);
+
+        clsRegisterLogins::RegisterUserLoginInfo();
 
         clsMainScreen::ShowMainMenuScreen();
         return true;
