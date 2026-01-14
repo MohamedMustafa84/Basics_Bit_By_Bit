@@ -92,6 +92,14 @@ class clsAddNewUserScreen
             Permissions += clsUser::enPermissions::pManageUsers;
         }
 
+        cout << "Register Login ? (Y/N)";
+        cin >> Answer;
+
+        if (toupper(Answer) == 'Y')
+        {
+            Permissions += clsUser::enPermissions::pRegisterLogin;
+        }
+
         return Permissions;
     }
 
