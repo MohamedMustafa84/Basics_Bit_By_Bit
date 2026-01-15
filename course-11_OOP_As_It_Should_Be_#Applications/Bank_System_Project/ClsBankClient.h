@@ -76,8 +76,7 @@ class clsBankClient:public clsPerson{
 
             return ClientRecord;
         }
-
-        static vector <clsBankClient> _LoadClientsDataFromFile(string FilePath="../Clients.txt"){
+         static vector <clsBankClient> _LoadClientsDataFromFile(string FilePath="Clients.txt"){
             vector<clsBankClient> vClients;
 
             fstream ClientsFile;
@@ -101,7 +100,7 @@ class clsBankClient:public clsPerson{
             return vClients;
         }
 
-        static void _SaveClientsDataToFile(vector<clsBankClient> vClients, string FilePath = "../Clients.txt")
+        static void _SaveClientsDataToFile(vector<clsBankClient> vClients, string FilePath = "Clients.txt")
         {
             
 
@@ -231,7 +230,7 @@ class clsBankClient:public clsPerson{
 
                 fstream ClientsFile;
 
-                ClientsFile.open("../Clients.txt", ios::in);
+                ClientsFile.open("Clients.txt", ios::in);
                 if (ClientsFile.is_open())
                 {
 
@@ -403,5 +402,43 @@ class clsBankClient:public clsPerson{
                 this->_AccountBalance -= abs(Amount);
                 this->Save();
                 return true;
+            }
+
+            bool Transfer(float Amount,clsBankClient &DestinationClient){
+                if(Amount >_AccountBalance){
+                    return false;
+                }
+                Withdraw(Amount);
+                DestinationClient.Deposit(Amount);
+                clsBankClient::Save();
+                return true;
+            }
+            static void SaveBalancesChangesAfterTransfer(clsBankClient SourceClient, clsBankClient DestinationClient)
+            {
+                vector<clsBankClient> _vClients;
+                _vClients = _LoadClientsDataFromFile();
+                short changedClientBalance = 0;
+
+                for (clsBankClient &Client : _vClients)
+                {
+
+                    if (Client.AccountNumber() == SourceClient.AccountNumber())
+                    {
+                        Client = SourceClient;
+                        changedClientBalance++;
+                    }
+                    
+                    if (Client.AccountNumber() == DestinationClient.AccountNumber())
+                    {
+                        Client = DestinationClient;
+                        changedClientBalance++;
+                    }
+                    if(changedClientBalance ==2){
+
+                        break;
+                    }
+                }
+
+                _SaveClientsDataToFile(_vClients);
             }
         };
