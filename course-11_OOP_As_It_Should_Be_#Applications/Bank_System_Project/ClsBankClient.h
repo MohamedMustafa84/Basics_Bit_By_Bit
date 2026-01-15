@@ -413,32 +413,4 @@ class clsBankClient:public clsPerson{
                 clsBankClient::Save();
                 return true;
             }
-            static void SaveBalancesChangesAfterTransfer(clsBankClient SourceClient, clsBankClient DestinationClient)
-            {
-                vector<clsBankClient> _vClients;
-                _vClients = _LoadClientsDataFromFile();
-                short changedClientBalance = 0;
-
-                for (clsBankClient &Client : _vClients)
-                {
-
-                    if (Client.AccountNumber() == SourceClient.AccountNumber())
-                    {
-                        Client = SourceClient;
-                        changedClientBalance++;
-                    }
-                    
-                    if (Client.AccountNumber() == DestinationClient.AccountNumber())
-                    {
-                        Client = DestinationClient;
-                        changedClientBalance++;
-                    }
-                    if(changedClientBalance ==2){
-
-                        break;
-                    }
-                }
-
-                _SaveClientsDataToFile(_vClients);
-            }
         };
