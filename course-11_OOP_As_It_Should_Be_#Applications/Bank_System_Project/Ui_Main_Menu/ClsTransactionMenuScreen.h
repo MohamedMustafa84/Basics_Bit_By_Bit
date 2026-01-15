@@ -5,6 +5,7 @@
 #include "ClsTotalBalancesScreen.h"
 #include "ClsDepositScreen.h"
 #include "ClsWithDrawScreen.h"
+#include "ClsTransferScreen.h"
 
 using namespace std;
 
@@ -15,7 +16,8 @@ class clsTransactionScreen : protected clsScreen
         eDeposit = 1,
         eWithdraw = 2,
         eTotalBalances = 3,
-        eMainMenu = 4
+        eTransfer = 4,
+        eMainMenu = 5
 
     };
 
@@ -33,7 +35,12 @@ class clsTransactionScreen : protected clsScreen
     {
         clsTotalBalances::PrintTotalBalances();
     }
-    
+
+    static void _ShowTransferScreen()
+    {
+        clsTransferScreen::ShowTransferScreen();
+    }
+
     static void _ShowMainMenuScreen()
     {
         // do nothing here the main screen will handle it 
@@ -69,9 +76,12 @@ class clsTransactionScreen : protected clsScreen
             _ShowTotalBalancesScreen();
             _BackToTransactionMenu();
             break;
+            case _enTransactionMenuOptions::eTransfer:
+            _ShowTransferScreen();
+            _BackToTransactionMenu();
+            break;
 
         case _enTransactionMenuOptions::eMainMenu:
-            _ShowMainMenuScreen();
             break;
         
         }
@@ -92,11 +102,12 @@ public:
         cout << setw(37) << left << "" << "\t[1] Deposit \n";
         cout << setw(37) << left << "" << "\t[2] Withdraw\n";
         cout << setw(37) << left << "" << "\t[3] TotalBalances \n";
-        cout << setw(37) << left << "" << "\t[4] Main Menu \n";
+        cout << setw(37) << left << "" << "\t[4] Transfer \n";
+        cout << setw(37) << left << "" << "\t[5] Main Menu \n";
 
         cout << setw(37) << left << "" << "================================================\n";
 
-        cout << setw(37) << left << "" << "\tChose What To Do From 1 to 4? ";
-        _PerformTransactionOptions(_enTransactionMenuOptions(clsInputValidate::ReadNumberBetween(1, 4)));
+        cout << setw(37) << left << "" << "\tChose What To Do From 1 to 5? ";
+        _PerformTransactionOptions(_enTransactionMenuOptions(clsInputValidate::ReadNumberBetween(1, 5)));
     }
 };
