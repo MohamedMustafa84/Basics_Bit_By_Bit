@@ -111,11 +111,11 @@ class clsMainScreen :protected clsScreen{
             break;
         case _enMainMenuOptions::eMangeUsers:
             _ShowMangeUsersScreen();
-            _BackToMainMenu();
+            ShowMainMenuScreen();
             break;
         case _enMainMenuOptions::eShowTransactionMenu:
             _ShowTransactionMenuScreen();
-            _BackToMainMenu();
+            ShowMainMenuScreen();
             break;
         case _enMainMenuOptions::eUpdateClient:
             _ShowUpdateClientsScreen();
