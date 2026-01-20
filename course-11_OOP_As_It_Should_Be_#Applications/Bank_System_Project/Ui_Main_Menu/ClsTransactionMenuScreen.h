@@ -6,6 +6,7 @@
 #include "ClsDepositScreen.h"
 #include "ClsWithDrawScreen.h"
 #include "ClsTransferScreen.h"
+#include "ClsTransferLogScreen.h"
 
 using namespace std;
 
@@ -17,7 +18,8 @@ class clsTransactionScreen : protected clsScreen
         eWithdraw = 2,
         eTotalBalances = 3,
         eTransfer = 4,
-        eMainMenu = 5
+        eTransferLog = 5,
+        eMainMenu = 6
 
     };
 
@@ -39,6 +41,11 @@ class clsTransactionScreen : protected clsScreen
     static void _ShowTransferScreen()
     {
         clsTransferScreen::ShowTransferScreen();
+    }
+
+    static void _ShowTransferLogScreen()
+    {
+        clsTransferLogScreen::ShowTransferLogList();
     }
 
     static void _ShowMainMenuScreen()
@@ -81,10 +88,14 @@ class clsTransactionScreen : protected clsScreen
             _BackToTransactionMenu();
             break;
 
-        case _enTransactionMenuOptions::eMainMenu:
-            break;
-        
-        }
+            case _enTransactionMenuOptions::eTransferLog:
+                _ShowTransferLogScreen();
+                _BackToTransactionMenu();
+                break;
+
+            case _enTransactionMenuOptions::eMainMenu:
+                break;
+            }
     }
 
 public:
@@ -103,11 +114,12 @@ public:
         cout << setw(37) << left << "" << "\t[2] Withdraw\n";
         cout << setw(37) << left << "" << "\t[3] TotalBalances \n";
         cout << setw(37) << left << "" << "\t[4] Transfer \n";
-        cout << setw(37) << left << "" << "\t[5] Main Menu \n";
+        cout << setw(37) << left << "" << "\t[5] Transfer Log \n";
+        cout << setw(37) << left << "" << "\t[6] Main Menu \n";
 
         cout << setw(37) << left << "" << "================================================\n";
 
-        cout << setw(37) << left << "" << "\tChose What To Do From 1 to 5? ";
-        _PerformTransactionOptions(_enTransactionMenuOptions(clsInputValidate::ReadNumberBetween(1, 5)));
+        cout << setw(37) << left << "" << "\tChose What To Do From 1 to 6? ";
+        _PerformTransactionOptions(_enTransactionMenuOptions(clsInputValidate::ReadNumberBetween(1, 6)));
     }
 };

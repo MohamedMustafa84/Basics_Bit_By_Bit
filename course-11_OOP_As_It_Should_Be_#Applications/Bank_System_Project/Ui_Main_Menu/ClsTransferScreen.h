@@ -3,6 +3,7 @@
 #include "../../../Libs/ClsInputsValidate.h"
 #include "../ClsBankClient.h"
 #include "ClsScreen.h"
+#include "../ClsGlobal.h"
 
 class clsTransferScreen : protected clsScreen
 {
@@ -59,16 +60,13 @@ public:
         clsBankClient DestinationClient = clsBankClient::Find(_ReadAccountNumber("Enter Client Account Number You Want To Transfer To"));
 
         _PrintClient(DestinationClient);
-        
         float Amount = _ReadAmount(SourceClient);
-
         char Answer = 'n';
         cout << "\nAre You Shower You Want to Preform This Operation? (Y/N)";
         cin >> Answer;
 
         if(toupper(Answer)){
             if (SourceClient.Transfer(Amount, DestinationClient)){
-                clsBankClient::SaveBalancesChangesAfterTransfer(SourceClient, DestinationClient);
                 cout<< "\nTransfer Done Successfully :-) \n";
                 _PrintClient(SourceClient);
                 _PrintClient(DestinationClient);
@@ -76,8 +74,7 @@ public:
                 cout << "\nTransfer Failed :-(\n";
             }
         }else{
-
-            cout << "\nThe Operation Was Cancelled \n";
+            cout<< "\nThe Operation Was Cancelled \n";
         }
 
         
