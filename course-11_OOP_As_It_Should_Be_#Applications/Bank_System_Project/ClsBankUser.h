@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include "../../Libs/clsString.h" 
+#include "../../Libs/ClsUtil.h" 
 #include "ClsPerson.h"
 #include <cmath>
 #include <fstream>
@@ -35,16 +36,15 @@ class clsUser:public clsPerson{
             return _GetEmptyUserObject();
         }
 
-
         return clsUser(
             enMode::UpdateMode,
-            vUserData[0], // FirstName
-            vUserData[1], // LastName
-            vUserData[2], // Email
-            vUserData[3], // Phone
-            vUserData[4], // UserName
-            vUserData[5], // Password
-            stoi(vUserData[6])); // Permissions
+            vUserData[0],                       // FirstName
+            vUserData[1],                       // LastName
+            vUserData[2],                       // Email
+            vUserData[3],                       // Phone
+            vUserData[4],                       // UserName
+            clsUtil::DecryptText(vUserData[5]), // Password
+            stoi(vUserData[6]));                // Permissions
     }
 
     static clsUser _GetEmptyUserObject(){
@@ -60,13 +60,15 @@ class clsUser:public clsPerson{
             UserRecord += User.Email() + Separator;
             UserRecord += User.Phone() + Separator;
             UserRecord += User.UserName() + Separator;
-            UserRecord += User.Password() + Separator;
+            
+            UserRecord += clsUtil::EncryptText(User.Password()) + Separator;
+
             UserRecord += to_string(User.Permissions());
 
             return UserRecord;
         }
 
-        static vector <clsUser> _LoadUsersDataFromFile(string FilePath="../Users.txt"){
+        static vector <clsUser> _LoadUsersDataFromFile(string FilePath="Users.txt"){
             vector<clsUser> vUsers;
 
             fstream UsersFile;
@@ -90,7 +92,7 @@ class clsUser:public clsPerson{
             return vUsers;
         }
 
-        static void _SaveUsersDataToFile(vector<clsUser> vUsers, string FilePath = "../Users.txt")
+        static void _SaveUsersDataToFile(vector<clsUser> vUsers, string FilePath = "Users.txt")
         {
 
             fstream UsersFile;
@@ -282,7 +284,7 @@ class clsUser:public clsPerson{
                 vector<clsUser> vUsers;
                 bool Deleted = false;
 
-                vUsers= _LoadUsersDataFromFile("../Users.txt");
+                vUsers= _LoadUsersDataFromFile("Users.txt");
 
 
                     for (clsUser &User :vUsers ){
@@ -363,7 +365,7 @@ class clsUser:public clsPerson{
 
 
             static vector <clsUser> GetUsersList(){
-                return _LoadUsersDataFromFile("../Users.txt");
+                return _LoadUsersDataFromFile("Users.txt");
             }
 
             bool CheckAccessPermission(enPermissions Permission)
