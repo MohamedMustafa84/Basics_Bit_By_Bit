@@ -4,6 +4,7 @@
 #include <vector>
 #include  "ClsGlobal.h"
 #include "../../Libs/ClsDate.h"
+#include "../../Libs/ClsUtil.h"
 
 using namespace std;
 
@@ -19,7 +20,7 @@ class clsRegisterLogins{
 
         UserLoginInfoRecord+= clsDate::GetSystemDateTimeString()+ Separator;
         UserLoginInfoRecord+= CurrentUser.UserName() + Separator;
-        UserLoginInfoRecord += CurrentUser.Password() + Separator;
+        UserLoginInfoRecord += clsUtil::EncryptText(CurrentUser.Password()) + Separator;
         UserLoginInfoRecord += to_string(CurrentUser.Permissions());
 
         return UserLoginInfoRecord;
@@ -43,7 +44,7 @@ class clsRegisterLogins{
 
         stLoginInfoRecord.DateAndTime = vUserLoginsInfo[0];
         stLoginInfoRecord.UserName = vUserLoginsInfo[1];
-        stLoginInfoRecord.Password = vUserLoginsInfo[2];
+        stLoginInfoRecord.Password = clsUtil::DecryptText(vUserLoginsInfo[2]);
         stLoginInfoRecord.Permission = vUserLoginsInfo[3];
 
         return stLoginInfoRecord;
