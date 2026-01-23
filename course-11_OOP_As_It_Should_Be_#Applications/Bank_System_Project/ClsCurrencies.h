@@ -132,7 +132,9 @@ class clsCurrency
 
 public:
 
+    clsCurrency(){
 
+    }
     clsCurrency (enMode Mode, string Country, string CurrencyCode, string CurrencyName, float Rate)
         
     {
