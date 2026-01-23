@@ -163,7 +163,8 @@ class clsUser:public clsPerson{
                 pFindClient = 16,
                 pTransaction = 32,
                 pManageUsers = 64,
-                pRegisterLogin=128
+                pRegisterLogin=128,
+                pCurrencyExchange=256
             };
 
             clsUser(enMode Mode, string FirstName, string LastName, string Email, string Phone, string UserName, string Password, int Permissions)
