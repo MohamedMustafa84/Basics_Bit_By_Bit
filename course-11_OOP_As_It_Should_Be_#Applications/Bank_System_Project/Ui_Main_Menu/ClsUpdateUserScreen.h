@@ -5,6 +5,7 @@ using namespace std;
 #include "../../../Libs/ClsInputsValidate.h"
 #include "../ClsBankUser.h"
 #include "ClsScreen.h"
+#include "../ClsGlobal.h"
 
 class clsUpdateUser : protected clsScreen
 {
@@ -129,24 +130,25 @@ public:
         }
 
         clsScreen::_DrawScreenHeader("Update User Screen");
-        string UserName= "";
+        string UserToUpdate= "";
         cout
             << "Enter User Name ? ";
-        UserName = clsInputValidate::ReadString();
+        UserToUpdate = clsInputValidate::ReadString();
 
-        while (!clsUser::IsUserExist(UserName))
+        while (!clsUser::IsUserExist(UserToUpdate))
         {
             cout << "\nthis User is not fount ,Chose Another One : ";
-            UserName = clsInputValidate::ReadString();
+            UserToUpdate = clsInputValidate::ReadString();
         }
         cout << endl;
 
-        if(UserName == "Admin"){
+        if (CurrentUser.UserName() != "Admin" && UserToUpdate == "Admin")
+        {
             cout << "You Can not Update this User \n";
             cout << "Please Contact Your Admin \n";
             return;
         }
-        clsUser User = clsUser::Find(UserName);
+        clsUser User = clsUser::Find(UserToUpdate);
         _Print(User);
 
         char Answer = 'N';
