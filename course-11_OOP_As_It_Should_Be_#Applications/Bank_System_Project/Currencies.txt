@@ -188,7 +188,7 @@ South Sudan#//#SSP#//#South Sudanese Pound#//#663.320007
 Spain#//#EUR#//#Euro#//#0.938000
 Sri Lanka#//#LKR#//#Sri Lanka Rupee#//#362.220001
 St. Vincent and the Grena#//#XCD#//#E.C. Dollar#//#2.700000
-Sudan#//#SDG#//#Sudanese Pound#//#578.000000
+Sudan#//#SDG#//#Sudanese Pound#//#577.000000
 Suriname#//#SRD#//#Surinamese Dollar#//#31.688000
 Sweden#//#SEK#//#Swedish Krona#//#10.177000
 Switzerland#//#CHF#//#Swiss Franc#//#0.924000

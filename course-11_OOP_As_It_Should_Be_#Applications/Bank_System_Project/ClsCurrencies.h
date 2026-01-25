@@ -50,8 +50,8 @@ class clsCurrency
 
         CurrencyRecord += Currency._Country + Separator;
         CurrencyRecord += Currency._CurrencyCode + Separator;
-        CurrencyRecord += Currency._CurrencyName+ Separator;
-        CurrencyRecord += to_string(Currency._Rate)+ Separator;
+        CurrencyRecord += Currency._CurrencyName + Separator;
+        CurrencyRecord += to_string(Currency._Rate);
 
 
         return CurrencyRecord;
@@ -250,6 +250,14 @@ public:
         return _LoadCurrenciesDataFromFile();
     }
 
+    float _ConvertToUSD( float Amount)
+    {
+        return Amount *_Rate ;
+    }
 
-
+    float _ConvertToOtherCurrency(clsCurrency Currency2, float Amount)
+    {
+        Amount = this->_ConvertToUSD(Amount);
+        return Amount * Currency2.Rate();
+    }
 };
