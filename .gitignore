@@ -7,4 +7,6 @@
 *.dll
 *output/
 *.vscode/
+*.csproj
+*obj/
 
