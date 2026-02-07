@@ -33,7 +33,13 @@
 # Executables
 *.exe
 *.out
-*.app
+*.a
+*.so
+*.dll
+*output/
+*.vscode/
+*.csproj
+*obj/
 
 ### DotnetCore ###
 # .NET Core build folders
