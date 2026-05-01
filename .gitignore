@@ -9,4 +9,5 @@
 *.vscode/
 *.csproj
 *obj/
+*.txt
 
