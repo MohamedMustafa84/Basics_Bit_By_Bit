@@ -40,6 +40,7 @@
 *.vscode/
 *.csproj
 *obj/
+*.txt
 
 ### DotnetCore ###
 # .NET Core build folders
