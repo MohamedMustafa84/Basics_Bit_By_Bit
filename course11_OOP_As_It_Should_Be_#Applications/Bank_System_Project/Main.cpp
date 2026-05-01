@@ -1,6 +1,6 @@
 #include <iostream>
-using namespace std; 
-#include "../ClsLoginScreen.h"
+using namespace std;  
+#include "ClsLoginScreen.h"
 
 
 int main(){
