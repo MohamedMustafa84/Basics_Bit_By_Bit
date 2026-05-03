@@ -172,8 +172,20 @@ class clsString{
         return CountVowels(_Value);
     }
 
-    static vector<string> Split(string Str, string delim)
+
+static vector<string> Split(const string& str, const string& delim="#//#")
+{
+    vector<string> result;
+
+    if (delim.empty())
+        return result;
+
+    size_t start = 0;
+    size_t end;
+
+    while ((end = str.find(delim, start)) != string::npos)
     {
+<<<<<<< HEAD
         vector<string> vString;
 
         int position = 0;
@@ -195,7 +207,17 @@ class clsString{
         }
 
         return vString;
+=======
+        result.push_back(str.substr(start, end - start));
+        start = end + delim.length();
+>>>>>>> ed2bc99 (Fix Split Function Bug)
     }
+
+    result.push_back(str.substr(start));
+
+    return result;
+}
+
 
     vector<string> Split( string delim){
         return Split(_Value, delim);
