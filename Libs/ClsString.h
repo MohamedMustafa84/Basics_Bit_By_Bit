@@ -185,8 +185,37 @@ static vector<string> Split(const string& str, const string& delim="#//#")
 
     while ((end = str.find(delim, start)) != string::npos)
     {
+<<<<<<< HEAD
         result.push_back(str.substr(start, end - start));
         start = end + delim.length();
+=======
+<<<<<<< HEAD
+        vector<string> vString;
+
+        int position = 0;
+        string Word = "";
+
+        while ((position = Str.find(delim)) != string::npos)
+        {
+            Word = Str.substr(0, position);
+
+            if (Word != "")
+            {
+                vString.push_back(Word);
+            }
+            Str.erase(0, position + delim.length());
+        }
+        if (Str != "")
+        {
+            vString.push_back(Str);
+        }
+
+        return vString;
+=======
+        result.push_back(str.substr(start, end - start));
+        start = end + delim.length();
+>>>>>>> ed2bc99 (Fix Split Function Bug)
+>>>>>>> ClearHistoryAmend
     }
 
     result.push_back(str.substr(start));

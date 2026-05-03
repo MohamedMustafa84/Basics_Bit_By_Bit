@@ -277,6 +277,10 @@ static string ConvertNumberToText(int Number){
             return arrTexts[(Number / 100000000) - 1] + " " + ConvertNumberToText(Number % 100000000);
         }
 
+<<<<<<< HEAD
         return "";
+=======
+        return "Out OF Range";
+>>>>>>> ClearHistoryAmend
     }
 };
