@@ -9,10 +9,6 @@
 #include "ClsFindClientScreen.h"
 #include "ClsTransactionMenuScreen.h"
 #include "ClsManageUsersScreen.h"
-#include "../ClsGlobal.h"
-#include "ClsRegisterLoginsScreen.h"
-#include "ClsCurrencyExchangeScreen.h"
-
 using namespace std;
 
 
@@ -27,9 +23,7 @@ class clsMainScreen :protected clsScreen{
         eFindClient = 5,
         eShowTransactionMenu=6,
         eMangeUsers=7,
-        eLoginRegister = 8,
-        eCurrencyExchange = 9,
-        eExit = 10
+        eExit = 8
 
     };
 
@@ -63,30 +57,22 @@ class clsMainScreen :protected clsScreen{
         clsTransactionScreen::ShowTransactionScreen();
     }
 
-    static void _ShowLoginRegisterScreen()
-    {
-        clsRegisterLoginScreen::ShowLoginsList();
-    }
+   
 
     static void _ShowMangeUsersScreen()
     {
         clsManageUsersScreen::ShowManageUsersScreen();
     }
 
-    static void _ShowCurrencyExchangeScreen()
+    static void _ShowEndScreen()
     {
-        clsCurrencyExchangeScreen::ShowCurrencyExchangeScreen();
-    }
-
-    static void _Logout()
-    {
-        CurrentUser = clsUser::Find("", "");
+        cout << "End Screen Will Be Here" << endl;
     }
 
     static void _BackToMainMenu()
     {
         char Key;
-        cout << setw(37) << left << "\nPress Any Key to Back To Main Menu ...\n";
+        cout << setw(37) << left << "\nEnter Any Key to Back To Main Menu ...\n";
         cin>>Key;
         // system("pause>0");
         ShowMainMenuScreen();
@@ -129,18 +115,8 @@ class clsMainScreen :protected clsScreen{
             _ShowUpdateClientsScreen();
             _BackToMainMenu();
             break;
-
-        case _enMainMenuOptions::eLoginRegister:
-            _ShowLoginRegisterScreen();
-            _BackToMainMenu();
-            break;
-
-        case _enMainMenuOptions::eCurrencyExchange:
-            _ShowCurrencyExchangeScreen();
-            ShowMainMenuScreen();
-            break;
         case _enMainMenuOptions::eExit:
-            _Logout();
+            _ShowEndScreen();
             break;
         }
     }
@@ -163,12 +139,10 @@ class clsMainScreen :protected clsScreen{
              cout <<setw(37)<<left<<""<< "\t[5] Find Client \n";
              cout <<setw(37)<<left<<""<< "\t[6] Transaction Menu\n";
              cout <<setw(37)<<left<<""<< "\t[7] Mange Users \n";
-             cout <<setw(37)<<left<<""<< "\t[8] Login Register \n";
-             cout <<setw(37)<<left<<""<< "\t[9] Currency Exchange \n";
-             cout <<setw(37)<<left<<""<< "\t[10] Logout \n";
+             cout <<setw(37)<<left<<""<< "\t[8] Logout \n";
              cout << setw(37) << left << "" << "================================================\n";
 
-             cout << setw(37) << left << ""<<"\tChose What To Do From 1 to 10? ";
-             _PreformMainMenuOptions(_enMainMenuOptions(clsInputValidate::ReadNumberBetween(1,10)));
+             cout << setw(37) << left << ""<<"\tChose What To Do From 1 to 8? ";
+             _PreformMainMenuOptions(_enMainMenuOptions(clsInputValidate::ReadNumberBetween(1,8)));
          }
      };

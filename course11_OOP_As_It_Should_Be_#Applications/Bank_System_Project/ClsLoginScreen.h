@@ -35,7 +35,7 @@ class clsLoginScreen :protected clsScreen{
 
             if (LoginTrials == 0)
             {
-                cout << "\nYou Are Locked After " << 3 - LoginTrials << " Failed Trails :-(\n ";
+                cout << "\nYou Are Locked After " << LoginTrials << " Failed Trails :-(\n ";
                 cout << "Please Contact Your Admin \n";
                 return false;
             }
