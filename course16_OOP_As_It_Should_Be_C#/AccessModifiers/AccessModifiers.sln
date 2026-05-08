@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35828.75 d17.13
+VisualStudioVersion = 17.13.35828.75
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccessModifiers", "AccessModifiers.csproj", "{D2657116-1168-4A03-AE66-FB3E3AE78952}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaticMembers", "..\StaticMembers\StaticMembers.csproj", "{B38C5DBC-D4CE-46AD-892B-42D066C59E08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D2657116-1168-4A03-AE66-FB3E3AE78952}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2657116-1168-4A03-AE66-FB3E3AE78952}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2657116-1168-4A03-AE66-FB3E3AE78952}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B38C5DBC-D4CE-46AD-892B-42D066C59E08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B38C5DBC-D4CE-46AD-892B-42D066C59E08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B38C5DBC-D4CE-46AD-892B-42D066C59E08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B38C5DBC-D4CE-46AD-892B-42D066C59E08}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
