@@ -65,30 +65,48 @@ public class clsPerson
 
 
 
-// Methods Override 
+// Methods Override And Methods Shadowing
 
-class clsA {
+class clsMyBaseClass {
     // To Override Method  you have to  make it  A virtual 
 
     public  virtual void Print()
     {
-        Console.WriteLine("Hi , iam the  print method from the base class A ");
+        Console.WriteLine("Hi , iam the  print method from the base class (BaseClass) ");
+    }
+
+    public virtual void MyOtherMethod()
+    {
+        Console.WriteLine("Base class Implementaion of MyOtherMethod");
     }
 }
 
 
-class clsB : clsA
+class clsMYDerivedClass : clsMyBaseClass
 {
     // we use the override key word to override  the methods
     public override  void Print()
     {
-        Console.WriteLine("Hi , iam the  print method from the derived class B ");
+        Console.WriteLine("Hi , iam the  print method from the derived class  ");
 
         //we use base keyword  to Access the Base class Method  from the Derived class
         base.Print();
 
+
+      
     }
+    
+    
+    // We use new keyword to Shadow the Methods
+    public new void MyOtherMethod()
+    {
+        Console.WriteLine("Derive Class implementation of the Shadwing Method (MyOtherMethod ");
+    }
+
+
 }
+
+
 
 
 
@@ -172,12 +190,33 @@ internal class Program
 
         //  Method Method override 
 
-        clsB DerivedClass= new clsB();
+        clsMyBaseClass BaseOpj = new clsMyBaseClass();
+
+        Console.WriteLine("Base Object :");
+
+        BaseOpj.Print();
+        BaseOpj.MyOtherMethod();
 
 
-        DerivedClass.Print();
+        Console.WriteLine("Derived Object :");
+
+        clsMYDerivedClass DerivedObj = new clsMYDerivedClass();
+
+        DerivedObj.Print();
+        DerivedObj.MyOtherMethod();
 
 
+
+
+        // Methods Override vs Methods Shadowing 
+        // the main deferent is when We Upcast the class  override will override the base class method but the shadwing Method will not 
+
+        // Casting :
+        clsMyBaseClass MyDerivedObjectAsBase = DerivedObj;
+
+        Console.WriteLine("After Casting :");
+        MyDerivedObjectAsBase.Print(); // Output : Hi , iam the  print method from the derived class 
+        MyDerivedObjectAsBase.MyOtherMethod(); // Output : Base class Implementaion of MyOtherMethod
 
 
 
