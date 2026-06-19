@@ -102,7 +102,15 @@
 			 inner join  FuelTypes on VehicleDetails.FuelTypeID = FuelTypes.FuelTypeID
 			 where VehicleDetails.Year between 1950 and 2000
 			 Group by Makes.Make,FuelTypes.FuelTypeName
-			  order by Makes.Make;  
+			  order by Makes.Make;
+			  
+		--peoblem 9 : get all Vehicle that runs with GAS
+		select VehicleDetails.* ,FuelTypes.FuelTypeName 
+		from VehicleDetails
+		inner join  FuelTypes on VehicleDetails.FuelTypeID = FuelTypes.FuelTypeID
+		where FuelTypes.FuelTypeName =N'GAS'; --we use N for the uniode
+
+
 
 
 			
