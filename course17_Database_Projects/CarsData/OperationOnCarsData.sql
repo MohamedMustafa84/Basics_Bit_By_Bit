@@ -122,7 +122,7 @@
 		where FuelTypes.FuelTypeName =N'GAS';
 
 
-		--peoblem 10 : get Total Vehicle that runs with GAS
+		--peoblem 11 : get Total Vehicle that runs with GAS
 		
 		
 		select count(*)  AS TotalVehicleRunsOnGAS from
@@ -133,3 +133,27 @@
 		inner join  FuelTypes on VehicleDetails.FuelTypeID = FuelTypes.FuelTypeID
 		where FuelTypes.FuelTypeName =N'GAS'
 		)R1;
+
+
+		--peoblem 12 : count vehicle by makes and order them by  number of vehicles  frim high to low
+
+		select Makes.Make,count(*) as NumberofVehicles
+			 from VehicleDetails 
+			 inner join Makes on VehicleDetails.MakeID = Makes.MakeID
+			 
+			 group by Makes.Make
+			 Order by NumberofVehicles desc;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
