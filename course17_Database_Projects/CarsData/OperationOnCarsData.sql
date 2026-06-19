@@ -146,6 +146,31 @@
 
 
 
+			 --peoblem 13 : Get all makes count of vehicles that manufactures more than 20k vehicles
+		
+		-- Sloution1
+		select * from
+		(
+
+			select Makes.Make,count(*) as NumberofVehicles
+				 from VehicleDetails 
+				 inner join Makes on VehicleDetails.MakeID = Makes.MakeID
+				 group by Makes.Make
+		)R1
+			  where NumberofVehicles > 20000
+			Order by NumberofVehicles Desc;
+
+		-- Sloution2
+			
+			select Makes.Make,count(*) as NumberofVehicles
+			 from VehicleDetails 
+			 inner join Makes on VehicleDetails.MakeID = Makes.MakeID
+			 
+			 group by Makes.Make
+			 having Count(*) >20000
+			 Order by NumberofVehicles desc;
+
+
 
 
 
