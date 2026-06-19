@@ -173,7 +173,11 @@
 
 
 
+			 --problem 14 : get all makes with makes that start with 'B'
 
+
+			 Select Make from Makes 
+				where make like 'B%';
 
 
 
