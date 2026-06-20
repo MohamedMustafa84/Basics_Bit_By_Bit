@@ -182,7 +182,18 @@
 			 --problem 15: get all makes with makes that End with 'W'
 				select Make from Makes
 				where  Make like '%W';
+		
 
+		--problem 16: get all makes that manufactures  DriveTypeName =FWD
+
+		select Makes.Make ,DriveTypes.DriveTypeName 
+		from VehicleDetails 
+				inner join Makes on VehicleDetails.MakeID =Makes.MakeID
+				inner join DriveTypes on VehicleDetails.DriveTypeID = DriveTypes.DriveTypeID
+
+		where DriveTypes.DriveTypeName ='FWD'
+		Group by Makes.Make ,DriveTypes.DriveTypeName
+		Order by Makes.Make ;
 
 
 
