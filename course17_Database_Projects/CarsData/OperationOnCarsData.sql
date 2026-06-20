@@ -196,8 +196,27 @@
 		Order by Makes.Make ;
 
 
+		--problem 17: get total makes that manufactures  DriveTypeName =FWD
 
 
+	
+			
+			select count(*) as MakewithFWD
+			 from 
+			 (
+					select Makes.Make ,DriveTypes.DriveTypeName 
+				from VehicleDetails 
+						inner join Makes on VehicleDetails.MakeID =Makes.MakeID
+						inner join DriveTypes on VehicleDetails.DriveTypeID = DriveTypes.DriveTypeID
+
+				where DriveTypes.DriveTypeName ='FWD'
+				Group by Makes.Make ,DriveTypes.DriveTypeName
+		
+			)R1;
+
+
+			
+				
 
 
 
