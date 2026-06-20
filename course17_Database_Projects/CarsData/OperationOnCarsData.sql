@@ -177,7 +177,12 @@
 
 
 			 Select Make from Makes 
-				where make like 'B%';
+				where Make like 'B%';
+
+			 --problem 15: get all makes with makes that End with 'W'
+				select Make from Makes
+				where  Make like '%W';
+
 
 
 
