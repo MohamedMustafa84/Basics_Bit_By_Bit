@@ -266,7 +266,7 @@
 
 
 
-				-- problem 21 : get Percentage of  vehicles that number of doors is not specified
+				-- problem 22 : get Percentage of  vehicles that number of doors is not specified
 
 				 
 				 select  (
@@ -275,3 +275,18 @@
 							cast ((select count(*) as TotalVehicle from VehicleDetails)as float )
 						) as PerOfNoSpecifiedDoors;
 				 select count(*) TotalVehicle from VehicleDetails;
+
+
+
+				 
+			-- problem 23 : Get makeID ,Make  and submodelName for all vehicle that have submodelName 'Elite'
+
+
+			select distinct  Makes.MakeID ,Makes.Make ,SubModels.SubModelName
+
+			from VehicleDetails 
+								inner join Makes on VehicleDetails.MakeID = Makes.MakeID
+								inner join SubModels on VehicleDetails.SubModelID = SubModels.SubModelID
+
+			where  SubModels.SubModelName ='Elite'
+			group by Makes.MakeID, Makes.Make ,SubModels.SubModelName ;
