@@ -258,9 +258,20 @@
 					
 
 
-				-- problem 20 : get Total  vehicles that number of doors is not specified
+				-- problem 21 : get Total  vehicles that number of doors is not specified
 
 				select  count(*) TotalWithNoSpecifiedDoorsNum from VehicleDetails where NumDoors is null;
 
 
 
+
+
+				-- problem 21 : get Percentage of  vehicles that number of doors is not specified
+
+				 
+				 select  (
+							cast ((select count(*) as TotalWithNoSpecifiedDoors from VehicleDetails where NumDoors is null) as float )
+							/
+							cast ((select count(*) as TotalVehicle from VehicleDetails)as float )
+						) as PerOfNoSpecifiedDoors;
+				 select count(*) TotalVehicle from VehicleDetails;
