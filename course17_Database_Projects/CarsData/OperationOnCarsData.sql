@@ -305,3 +305,11 @@
 								inner join Makes on VehicleDetails.MakeID =Makes.MakeID
 
 				Where VehicleDetails.Engine like '%OHV%' and (VehicleDetails.Engine_Cylinders=4);
+
+
+			--problem 26 : get all vehicle that their body  is sport Utility and year  > 2020
+				
+				select Bodies.BodyName ,VehicleDetails.*
+					 from VehicleDetails
+									inner join Bodies on VehicleDetails.BodyID = Bodies.BodyID
+					 where Bodies.BodyName ='Sport Utility' and VehicleDetails.Year >2020;
