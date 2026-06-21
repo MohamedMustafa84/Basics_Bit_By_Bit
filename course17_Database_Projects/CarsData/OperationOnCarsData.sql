@@ -250,6 +250,11 @@
 				Group by Makes.Make ,DriveTypes.DriveTypeName
 				
 				)R1 where TotalVehicles >10000;
+
+
+				-- problem 20 : get all vehicles that number of doors is not specified
+					
+					select  * from VehicleDetails where NumDoors is null;
 					
 
 
