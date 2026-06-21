@@ -290,3 +290,9 @@
 
 			where  SubModels.SubModelName ='Elite'
 			group by Makes.MakeID, Makes.Make ,SubModels.SubModelName ;
+
+
+			--problem 24 : get all vehicle that have Engines >3  liters and have only 2 doors
+
+			select * from VehicleDetails
+				where Engine_Liter_Display >3 and NumDoors =2;
