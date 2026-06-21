@@ -215,6 +215,17 @@
 			)R1;
 
 
+			--problem 18: get total vehicles per DriveTypeName Per Make And Order Them Per Make asc then Per Total Dec
+
+				select  distinct Makes.Make ,DriveTypes.DriveTypeName ,Count(*) TotalVehicles
+				from VehicleDetails 
+						inner join Makes on VehicleDetails.MakeID =Makes.MakeID
+						inner join DriveTypes on VehicleDetails.DriveTypeID = DriveTypes.DriveTypeID
+
+				Group by Makes.Make ,DriveTypes.DriveTypeName
+				Order by Makes.Make Asc ,TotalVehicles desc;
+
+
 			
 				
 
