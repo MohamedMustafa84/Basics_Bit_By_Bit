@@ -321,3 +321,12 @@
 					 from VehicleDetails
 									inner join Bodies on VehicleDetails.BodyID = Bodies.BodyID
 					 where Bodies.BodyName  in ('Coupe' ,'Hatchback' ,'Sedan');
+
+			--problem 28: get all vehicle that their body is 'Coupe' or 'Hatchback' or 'Sedan' and manufactures in year 2008 or 2020 or 2021
+
+				select Bodies.BodyName ,VehicleDetails.*
+					 from VehicleDetails
+									inner join Bodies on VehicleDetails.BodyID = Bodies.BodyID
+					 where (Bodies.BodyName  in ('Coupe' ,'Hatchback' ,'Sedan')) and (VehicleDetails.Year in (2008 ,2020,2022));
+
+				
