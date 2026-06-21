@@ -217,6 +217,7 @@
 
 			--problem 18: get total vehicles per DriveTypeName Per Make And Order Them Per Make asc then Per Total Dec
 
+				--sloution one 
 				select  distinct Makes.Make ,DriveTypes.DriveTypeName ,Count(*) TotalVehicles
 				from VehicleDetails 
 						inner join Makes on VehicleDetails.MakeID =Makes.MakeID
@@ -226,8 +227,30 @@
 				Order by Makes.Make Asc ,TotalVehicles desc;
 
 
-			
+			--problem 19: get total vehicles per DriveTypeName Per Make And Order Them Per Make asc then Per Total Dec then filter only result  with total > 10000
+				select  distinct Makes.Make ,DriveTypes.DriveTypeName ,Count(*) TotalVehicles
+				from VehicleDetails 
+						inner join Makes on VehicleDetails.MakeID =Makes.MakeID
+						inner join DriveTypes on VehicleDetails.DriveTypeID = DriveTypes.DriveTypeID
+
+				Group by Makes.Make ,DriveTypes.DriveTypeName
+					having count(*) >10000
+				Order by Makes.Make Asc ,TotalVehicles desc;
+
 				
+				--sloution two
+
+				select * from 
+				(
+					select  distinct Makes.Make ,DriveTypes.DriveTypeName ,Count(*) TotalVehicles
+				from VehicleDetails 
+						inner join Makes on VehicleDetails.MakeID =Makes.MakeID
+						inner join DriveTypes on VehicleDetails.DriveTypeID = DriveTypes.DriveTypeID
+
+				Group by Makes.Make ,DriveTypes.DriveTypeName
+				
+				)R1 where TotalVehicles >10000;
+					
 
 
 
