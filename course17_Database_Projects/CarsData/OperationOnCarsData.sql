@@ -399,3 +399,10 @@
 				Select  VehicleDetails.Vehicle_Display_Name   
 					from VehicleDetails 
 						where Engine_CC = (select max(Engine_CC) from VehicleDetails);
+
+
+			-- problem 36: get all vehicles that have  Engine_CC below Avarage
+
+				Select  VehicleDetails.Vehicle_Display_Name   
+					from VehicleDetails 
+						where Engine_CC < (select avg(Engine_CC) from VehicleDetails);
