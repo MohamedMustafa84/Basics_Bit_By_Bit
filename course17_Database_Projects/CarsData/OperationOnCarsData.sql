@@ -380,3 +380,11 @@
 
 				select min(Engine_CC) as MinimumEngineCC , max(Engine_CC) as MaximumEngineCC, avg(Engine_CC) as AvarageEngineCC
 				from VehicleDetails;
+
+
+
+			-- problem 34: get all vehicles that have the Minimum Engine_CC
+
+				Select  VehicleDetails.Vehicle_Display_Name   
+					from VehicleDetails 
+						where Engine_CC = (select min(Engine_CC) from VehicleDetails);
