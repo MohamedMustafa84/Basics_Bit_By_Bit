@@ -375,3 +375,8 @@
 							from VehicleDetails  
 					)R1
 						where  Age =15 or Age =25;
+
+			-- problem 33: get minimum EngineCC , Maximum Engine CC of all Vehicles
+
+				select min(Engine_CC) as MinimumEngineCC , max(Engine_CC) as MaximumEngineCC, avg(Engine_CC) as AvarageEngineCC
+				from VehicleDetails;
