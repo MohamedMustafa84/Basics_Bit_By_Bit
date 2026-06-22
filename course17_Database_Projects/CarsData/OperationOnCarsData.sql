@@ -329,4 +329,12 @@
 									inner join Bodies on VehicleDetails.BodyID = Bodies.BodyID
 					 where (Bodies.BodyName  in ('Coupe' ,'Hatchback' ,'Sedan')) and (VehicleDetails.Year in (2008 ,2020,2022));
 
-				
+			
+			
+			--problem 29 : return found =1 if there is any vehicle made in year 1950
+
+			select found =1
+				where  
+					exists(
+								select top 1 * from vehicleDetails where Year =1950
+							)
