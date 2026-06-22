@@ -361,5 +361,17 @@
 
 			-- probelm 31 : get all vehicle desplay name , year and add  extra column to calculate the Age of the Car then sort the results by the ag desc
 				
-				select VehicleDetails.Vehicle_Display_Name ,Age = YEAR(GetDate()) - VehicleDetails.Year
-					from VehicleDetails ;
+				select VehicleDetails.Vehicle_Display_Name,VehicleDetails.Year ,Age = YEAR(GetDate()) - VehicleDetails.Year
+					from VehicleDetails 
+					order by Age desc;
+
+
+			--probelm 32: get all vehicle desplay name , year and add  extra column to calculate the Age for the vehicles 
+
+				--that their age between 15 and 25 year old
+
+					select * from (
+							select VehicleDetails.Vehicle_Display_Name,VehicleDetails.Year ,Age = YEAR(GetDate()) - VehicleDetails.Year
+							from VehicleDetails  
+					)R1
+						where  Age =15 or Age =25;
