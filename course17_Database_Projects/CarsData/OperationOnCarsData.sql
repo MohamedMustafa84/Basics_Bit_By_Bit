@@ -388,3 +388,14 @@
 				Select  VehicleDetails.Vehicle_Display_Name   
 					from VehicleDetails 
 						where Engine_CC = (select min(Engine_CC) from VehicleDetails);
+
+
+
+
+			
+
+			-- problem 35: get all vehicles that have the Maximum Engine_CC
+
+				Select  VehicleDetails.Vehicle_Display_Name   
+					from VehicleDetails 
+						where Engine_CC = (select max(Engine_CC) from VehicleDetails);
