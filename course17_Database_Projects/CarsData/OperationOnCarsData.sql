@@ -406,3 +406,17 @@
 				Select  VehicleDetails.Vehicle_Display_Name   
 					from VehicleDetails 
 						where Engine_CC < (select avg(Engine_CC) from VehicleDetails);
+
+
+
+
+			-- problem 37: get total vehicles that have  Engine_CC Above Avarage
+			
+				
+				select count(*) as VehicleHaveEngineCCAboveAvarage  from 
+						(
+							Select  VehicleDetails.Vehicle_Display_Name   
+							from VehicleDetails 
+								where Engine_CC > (select avg(Engine_CC) from VehicleDetails)
+						)R1;
+					
