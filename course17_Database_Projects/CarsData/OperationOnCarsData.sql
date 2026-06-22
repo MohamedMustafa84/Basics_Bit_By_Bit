@@ -356,3 +356,10 @@
 						else 'unknown'
 			END as DoorDescription
 				from VehicleDetails;
+
+		
+
+			-- probelm 31 : get all vehicle desplay name , year and add  extra column to calculate the Age of the Car then sort the results by the ag desc
+				
+				select VehicleDetails.Vehicle_Display_Name ,Age = YEAR(GetDate()) - VehicleDetails.Year
+					from VehicleDetails ;
