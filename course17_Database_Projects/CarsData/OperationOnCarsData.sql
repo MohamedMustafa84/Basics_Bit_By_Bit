@@ -426,3 +426,11 @@
 				select distinct VehicleDetails.Engine_CC
 				from VehicleDetails 
 				order by Engine_CC desc;
+
+
+			-- Problem 39 : get the maximum 3 Engin_CC
+
+				select distinct  top 3 VehicleDetails.Engine_CC
+				from VehicleDetails 
+				order by Engine_CC desc;
+
