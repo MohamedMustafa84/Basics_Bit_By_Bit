@@ -434,3 +434,17 @@
 				from VehicleDetails 
 				order by Engine_CC desc;
 
+
+
+			-- Problem 40 : get all vehicles that has one of  max 3 Engin_CC
+
+				select VehicleDetails.Vehicle_Display_Name from VehicleDetails
+					where Engine_CC in (
+
+						select distinct  top 3 VehicleDetails.Engine_CC
+				from VehicleDetails 
+				order by Engine_CC desc
+				)
+
+
+
