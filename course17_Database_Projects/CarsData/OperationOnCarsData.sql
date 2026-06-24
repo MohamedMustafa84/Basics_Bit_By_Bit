@@ -420,3 +420,9 @@
 								where Engine_CC > (select avg(Engine_CC) from VehicleDetails)
 						)R1;
 					
+
+			-- Problem 38 : get all Unique Engin_CC and Sort Them Desc
+				
+				select distinct VehicleDetails.Engine_CC
+				from VehicleDetails 
+				order by Engine_CC desc;
