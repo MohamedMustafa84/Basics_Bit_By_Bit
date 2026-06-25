@@ -541,6 +541,12 @@
 				)
 
 
+			--problem 49 : get all fuel types each time the result should be showed in random order 
+				
+				select  FuelTypeName  from FuelTypes
+					order by NEWID();
+
+
 
 
 				
