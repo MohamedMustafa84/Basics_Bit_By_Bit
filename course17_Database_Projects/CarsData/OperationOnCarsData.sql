@@ -516,7 +516,31 @@
 
 							)as T
 				)
-					
+
+
+
+
 				
+
+			-- problem 48 : get the lowest manufactures that make the heghest number of models
+				--Note : they could be more than one manufacturer have the same low number of models
+					
+								
+				select Makes.Make ,Count(*) as NumberOfModels
+					from Makes inner join MakeModels on Makes.MakeID = MakeModels.MakeID
+				group by Makes.Make
+				having count(*) = (
+
+					select Min(NumberOfModels) as MinNumberOfModel
+					from (
+							select MakeID ,count(*) as NumberOfModels
+							from MakeModels
+							group by MakeID
+
+							)as R1
+				)
+
+
+
 
 				
