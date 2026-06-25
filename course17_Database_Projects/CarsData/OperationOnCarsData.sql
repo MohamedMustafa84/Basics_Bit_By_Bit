@@ -485,3 +485,11 @@
 						order by TotalNumberOFDoors desc;
 
 
+			-- problem 44 : get Number OF Models Per make 
+				
+				select Makes.Make ,Count(*) as NumberOfModels
+					from Makes inner join MakeModels on Makes.MakeID = MakeModels.MakeID
+				group by Makes.Make
+				Order by NumberOfModels desc;
+
+
