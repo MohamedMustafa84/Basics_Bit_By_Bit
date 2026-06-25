@@ -477,3 +477,11 @@
 					Order By Engine_CC;
 
 
+			-- problem 43 : get Make and total Number of doors Manufacture per Make 
+
+				select distinct Makes.Make ,sum(VehicleDetails.NumDoors) as TotalNumberOFDoors
+					from VehicleDetails inner join  Makes on VehicleDetails.MakeID = Makes.MakeID
+					Group by Makes.Make
+						order by TotalNumberOFDoors desc;
+
+
