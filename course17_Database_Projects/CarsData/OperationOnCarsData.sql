@@ -447,4 +447,14 @@
 				)
 
 
+		-- problem 41 : get all makes that Manufactures one of the Max 3 Engine CC 
+			select  distinct  Makes.Make from VehicleDetails
+					inner join Makes on VehicleDetails.MakeID = Makes.MakeID
+					where Engine_CC in (
+
+						select distinct  top 3 VehicleDetails.Engine_CC
+				from VehicleDetails 
+				order by Engine_CC desc
+				)order by makes.Make;
+
 
