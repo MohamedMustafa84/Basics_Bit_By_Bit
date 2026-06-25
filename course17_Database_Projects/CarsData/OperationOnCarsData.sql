@@ -492,4 +492,9 @@
 				group by Makes.Make
 				Order by NumberOfModels desc;
 
+			-- problem 46 : get the highest manufactures that make the heghest number of models
 
+				select top 3 Makes.Make ,Count(*) as NumberOfModels
+					from Makes inner join MakeModels on Makes.MakeID = MakeModels.MakeID
+				group by Makes.Make
+				Order by NumberOfModels desc;
