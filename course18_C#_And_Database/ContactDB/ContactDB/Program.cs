@@ -1,5 +1,6 @@
 ﻿using System;
 using System;
+using System.Globalization;
 using System.Net;
 using Microsoft.Data.SqlClient;
 
@@ -328,6 +329,52 @@ internal class Program{
     }
 
 
+    // Retrieve Single Value Using ExecuteScalar
+
+
+    static string  GetFirstName(int contactID)
+    {
+
+        string FirstName="";
+
+        SqlConnection Connection = new SqlConnection(ConnectionString);
+
+        string query = "select  FirstName from Contacts where ContactID = @ContactID";
+
+        SqlCommand Command = new SqlCommand(query, Connection);
+
+        Command.Parameters.AddWithValue("@ContactID", contactID);
+
+        try
+        {
+            Connection.Open();
+
+            Object Result = Command.ExecuteScalar();
+
+
+
+            if(Result != null)
+            {
+                FirstName = Result.ToString();
+            }
+            else
+            {
+                FirstName = " ";
+            }
+
+           
+            Connection.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error: " + ex.Message);
+        }
+
+        return FirstName;
+
+
+    }
+
 
 
     public static void Main()
@@ -340,7 +387,13 @@ internal class Program{
         //GetContactsStartWith("j");
 
         //GetContactsEndWith("e");
-        GetContactsFirstNameContain("l");
+
+
+        //GetContactsFirstNameContain("l");
+
+
+        Console.WriteLine("the first Name is " + GetFirstName(4));
+
 
         Console.ReadKey();
     }
