@@ -454,6 +454,58 @@ internal class Program{
         Console.WriteLine($"County ID  : {ContactInfo.CountryID}");
     }
 
+
+
+
+
+    // insert Add data to the database
+
+
+    static void AddNewContactAndGetContactID (stContact newContactInfo)
+    {
+        SqlConnection Connection = new SqlConnection(ConnectionString);
+
+        string query = "insert into Contacts (FirstName,LastName,Email,Phone,Address,CountryID)   values (@FirstName,@LastName,@Email,@Phone,@Address,@CountryID); select SCOPE_IDENTITY()";
+
+        SqlCommand Command = new SqlCommand(query, Connection);
+
+        Command.Parameters.AddWithValue("@FirstName", newContactInfo.FirstName);
+        Command.Parameters.AddWithValue("@LastName", newContactInfo.LastName);
+        Command.Parameters.AddWithValue("@Email", newContactInfo.Email);
+        Command.Parameters.AddWithValue("@Phone", newContactInfo.Phone);
+        Command.Parameters.AddWithValue("@Address", newContactInfo.Address);
+        Command.Parameters.AddWithValue("@CountryID", newContactInfo.CountryID);
+
+        try
+        {
+            Connection.Open();
+
+            object result= Command.ExecuteScalar();
+
+
+             if (result!=null && int.TryParse(result.ToString(),out int InsertedID) )
+            {
+                Console.WriteLine($"Newly Inserted ID : {InsertedID}");
+            } else
+            {
+                Console.WriteLine("add new Contact is Faield :(");
+
+            }
+
+          
+            Connection.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error: " + ex.Message);
+        }
+
+
+    }
+
+
+
+
     public static void Main()
     {
         //PrintAllContact();
@@ -474,25 +526,35 @@ internal class Program{
 
         // Get single Contact 
 
-        stContact ContactInfo = new stContact { };
-        //{
-        //    FirstName = "mohamed",
-        //    LastName = "mustafa",
-        //    Email = "example@gamil.com",
-        //    Phone = "113322343",
-        //    Address = "khrtoum 12 str",
-        //    CountryID = 2
-
-        //};
+        //stContact ContactInfo = new stContact { };
 
         
-        if (FindContactByID(3,ref ContactInfo))
+        //if (FindContactByID(3,ref ContactInfo))
+        //{
+        //    PrintContactInfo(ContactInfo);
+        //}
+        //else
+        //{
+        //    Console.WriteLine("the contact is not found");
+        //}
+
+
+
+
+        //  Insert Add data to the database
+
+        stContact NewContact = new stContact
         {
-            PrintContactInfo(ContactInfo);
-        }
+            FirstName = "Ali",
+            LastName = "mustafa",
+            Email = "example@gamil.com",
+            Phone = "113322343",
+            Address = "khrtoum 12 str",
+            CountryID = 2
 
+        };
 
-
+        AddNewContactAndGetContactID(NewContact);
 
 
 
