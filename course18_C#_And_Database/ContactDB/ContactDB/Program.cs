@@ -505,6 +505,65 @@ internal class Program{
 
 
 
+    // Update data 
+
+    static void UpdateContactData(int ContactID , stContact ContactInfo)
+    {
+        SqlConnection Connection = new SqlConnection(ConnectionString);
+
+        string query = @"Update Contacts set
+            FirstName =@FirstName,
+            LastName =@LastName,
+            Email = @Email,
+            Phone =@Phone,
+            Address = @Address,
+            CountryID =@CountryID 
+            where ContactID= @ContactID
+
+
+            ";
+
+        SqlCommand Command = new SqlCommand(query, Connection);
+
+        Command.Parameters.AddWithValue("@ContactID", ContactID);
+        Command.Parameters.AddWithValue("@FirstName", ContactInfo.FirstName);
+        Command.Parameters.AddWithValue("@LastName", ContactInfo.LastName);
+        Command.Parameters.AddWithValue("@Email", ContactInfo.Email);
+        Command.Parameters.AddWithValue("@Phone", ContactInfo.Phone);
+        Command.Parameters.AddWithValue("@Address", ContactInfo.Address);
+        Command.Parameters.AddWithValue("@CountryID", ContactInfo.CountryID);
+
+        try
+        {
+            Connection.Open();
+
+            int IffectedRows= Command.ExecuteNonQuery();
+
+
+            if (IffectedRows>0)
+            {
+                Console.WriteLine($"Contact Updated Successfully");
+            }
+            else
+            {
+                Console.WriteLine("Update Contact is Faield :(");
+
+            }
+
+
+            Connection.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error: " + ex.Message);
+        }
+
+
+    }
+
+
+
+
 
     public static void Main()
     {
@@ -528,7 +587,7 @@ internal class Program{
 
         //stContact ContactInfo = new stContact { };
 
-        
+
         //if (FindContactByID(3,ref ContactInfo))
         //{
         //    PrintContactInfo(ContactInfo);
@@ -543,7 +602,26 @@ internal class Program{
 
         //  Insert Add data to the database
 
-        stContact NewContact = new stContact
+        //stContact NewContact = new stContact
+        //{
+        //    FirstName = "Ali",
+        //    LastName = "mustafa",
+        //    Email = "example@gamil.com",
+        //    Phone = "113322343",
+        //    Address = "khrtoum 12 str",
+        //    CountryID = 2
+
+        //};
+
+        //AddNewContactAndGetContactID(NewContact);
+
+
+
+
+        // Update Contact Info 
+
+
+        stContact NewContactInfo = new stContact
         {
             FirstName = "Ali",
             LastName = "mustafa",
@@ -554,7 +632,11 @@ internal class Program{
 
         };
 
-        AddNewContactAndGetContactID(NewContact);
+
+
+        UpdateContactData(2, NewContactInfo);
+
+
 
 
 
