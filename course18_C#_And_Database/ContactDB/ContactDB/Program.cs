@@ -564,6 +564,50 @@ internal class Program{
 
 
 
+    // delete Contact Info :
+
+
+    static void DeleteContactData(int ContactID)
+    {
+        SqlConnection Connection = new SqlConnection(ConnectionString);
+
+        string query = @"delete contacts where ContactID =@ContactID";
+
+        SqlCommand Command = new SqlCommand(query, Connection);
+
+        Command.Parameters.AddWithValue("@ContactID", ContactID);
+
+        try
+        {
+            Connection.Open();
+
+            int IffectedRows = Command.ExecuteNonQuery();
+
+
+            if (IffectedRows > 0)
+            {
+                Console.WriteLine($"Contact deleted Successfully");
+            }
+            else
+            {
+                Console.WriteLine("delete Contact is Faield :(");
+
+            }
+
+
+            Connection.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error: " + ex.Message);
+        }
+
+
+    }
+
+
+
+
 
     public static void Main()
     {
@@ -618,23 +662,33 @@ internal class Program{
 
 
 
+
         // Update Contact Info 
 
+        //stContact NewContactInfo = new stContact
+        //{
+        //    FirstName = "Ali",
+        //    LastName = "mustafa",
+        //    Email = "example@gamil.com",
+        //    Phone = "113322343",
+        //    Address = "khrtoum 12 str",
+        //    CountryID = 2
 
-        stContact NewContactInfo = new stContact
-        {
-            FirstName = "Ali",
-            LastName = "mustafa",
-            Email = "example@gamil.com",
-            Phone = "113322343",
-            Address = "khrtoum 12 str",
-            CountryID = 2
-
-        };
-
+        //};
 
 
-        UpdateContactData(2, NewContactInfo);
+        //UpdateContactData(2, NewContactInfo);
+
+
+
+
+
+        // Delete Contact info 
+
+
+        DeleteContactData(7);
+
+
 
 
 
