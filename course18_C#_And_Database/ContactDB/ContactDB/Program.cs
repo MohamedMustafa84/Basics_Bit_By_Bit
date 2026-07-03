@@ -1,5 +1,6 @@
 ﻿using System;
 using System;
+using System.ComponentModel;
 using System.Globalization;
 using System.Net;
 using Microsoft.Data.SqlClient;
@@ -376,6 +377,82 @@ internal class Program{
     }
 
 
+    // Find Single Contact 
+
+    public struct stContact {
+
+         public int ContactID { get; set; }
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Address { get; set; } 
+        public string Email { get; set; }
+
+        public string Phone { get; set; }
+        public int CountryID{ get; set; }
+
+
+    }
+
+
+
+    static bool  FindContactByID(int contactID ,ref stContact Contactinfo)
+    {
+        bool isFound = false;
+
+        SqlConnection Connection = new SqlConnection(ConnectionString);
+
+        string query = "select * from Contacts where ContactID = @ContactID";
+
+        SqlCommand Command = new SqlCommand(query, Connection);
+
+        Command.Parameters.AddWithValue("@ContactID", contactID);
+
+        try
+        {
+            Connection.Open();
+
+            SqlDataReader reader = Command.ExecuteReader();
+
+
+            while (reader.Read())
+            {
+                isFound= true;
+
+                Contactinfo.ContactID = (int)reader["ContactID"];
+                Contactinfo.FirstName = (string)reader["FirstName"];
+                Contactinfo.LastName = (string)reader["LastName"];
+                Contactinfo.Email = (string)reader["Email"];
+                Contactinfo.Phone = (string)reader["Phone"];
+                Contactinfo.Address = (string)reader["Address"];
+                Contactinfo.CountryID = (int)reader["CountryID"];
+
+
+
+            }
+            reader.Close();
+            Connection.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error: " + ex.Message);
+        }
+
+        return isFound;
+
+    }
+
+    public static void PrintContactInfo(stContact ContactInfo)
+    {
+        Console.WriteLine("-------------------------- Contact Info-------------------------");
+        Console.WriteLine($"Contact ID  : {ContactInfo.ContactID}");
+        Console.WriteLine($"First Name  : {ContactInfo.FirstName}");
+        Console.WriteLine($"Last Name  : {ContactInfo.LastName}");
+        Console.WriteLine($"Email  : {ContactInfo.Email}");
+        Console.WriteLine($"Phone  : {ContactInfo.Phone}");
+        Console.WriteLine($"Address : {ContactInfo.Address}");
+        Console.WriteLine($"County ID  : {ContactInfo.CountryID}");
+    }
 
     public static void Main()
     {
@@ -392,7 +469,36 @@ internal class Program{
         //GetContactsFirstNameContain("l");
 
 
-        Console.WriteLine("the first Name is " + GetFirstName(4));
+        //Console.WriteLine("the first Name is " + GetFirstName(4));
+
+
+        // Get single Contact 
+
+        stContact ContactInfo = new stContact { };
+        //{
+        //    FirstName = "mohamed",
+        //    LastName = "mustafa",
+        //    Email = "example@gamil.com",
+        //    Phone = "113322343",
+        //    Address = "khrtoum 12 str",
+        //    CountryID = 2
+
+        //};
+
+        
+        if (FindContactByID(3,ref ContactInfo))
+        {
+            PrintContactInfo(ContactInfo);
+        }
+
+
+
+
+
+
+
+
+
 
 
         Console.ReadKey();
