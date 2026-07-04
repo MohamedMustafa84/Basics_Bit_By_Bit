@@ -605,13 +605,53 @@ internal class Program{
 
     }
 
+    // delete Mulitples contacts using in statement
+
+
+    static void DeleteContacts(string ContactIDs)
+    {
+        SqlConnection Connection = new SqlConnection(ConnectionString);
+
+        string query = @"delete contacts where ContactID in (" + ContactIDs+ ")";
+
+        SqlCommand Command = new SqlCommand(query, Connection);
+
+
+        try
+        {
+            Connection.Open();
+
+            int IffectedRows = Command.ExecuteNonQuery();
+
+
+            if (IffectedRows > 0)
+            {
+                Console.WriteLine($"Contact deleted Successfully");
+            }
+            else
+            {
+                Console.WriteLine("delete Contact is Faield :(");
+
+            }
+
+
+            Connection.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error: " + ex.Message);
+        }
+
+
+    }
+
 
 
 
 
     public static void Main()
     {
-        //PrintAllContact();
+        PrintAllContact();
 
         //FindContactWithFirstName("jane");
         //PrintAllContactsWithFirstNameAndCountryID("jane",2);
@@ -686,14 +726,14 @@ internal class Program{
         // Delete Contact info 
 
 
-        DeleteContactData(7);
+        //DeleteContactData(7);
 
 
 
+        // Handle in statement 
 
 
-
-
+        DeleteContacts("1006,1007");
 
 
 
