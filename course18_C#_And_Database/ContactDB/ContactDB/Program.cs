@@ -651,7 +651,7 @@ internal class Program{
 
     public static void Main()
     {
-        PrintAllContact();
+        //PrintAllContact();
 
         //FindContactWithFirstName("jane");
         //PrintAllContactsWithFirstNameAndCountryID("jane",2);
