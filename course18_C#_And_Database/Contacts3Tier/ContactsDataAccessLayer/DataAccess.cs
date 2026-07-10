@@ -41,7 +41,16 @@ namespace ContactsDataAccessLayer
                     Address = (string)reader["Address"];
                     DateOFBirth = (DateTime)reader["DateOfBirth"];
                     CountryID = (int)reader["CountryID"];
-                    ImagePath = (string)reader["ImagePath"];
+
+                    // handel entity if it null
+
+                    if (reader["ImagePath"] !=DBNull.Value)
+                    {
+                        ImagePath = (string)reader["ImagePath"];
+                    }else
+                    {
+                        ImagePath = "";
+                    }
 
                 }
 
