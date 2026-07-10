@@ -8,6 +8,6 @@ namespace ContactsDataAccessLayer
 {
    public static  class DataAccessSettings
     {
-        public static string ConnectionString = "Server=.;Database =ContactsDB;Integrated security=true; TrustServerSertificate=true";
+        public static string ConnectionString = "Server=.;Database =ContactsDB;Integrated security=true; Trust Server Certificate =true";
     }
 }
