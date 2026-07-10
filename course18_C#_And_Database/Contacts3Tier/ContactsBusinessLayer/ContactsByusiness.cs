@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net;
+using System.Security.Policy;
 using System.Xml.Serialization;
 using ContactsDataAccessLayer;
 
@@ -7,7 +9,7 @@ namespace ContactsBusinessLayer
 {
     public class ClsContact
     {
-        public int ID { get; set; }
+        public int ID { get; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -17,25 +19,43 @@ namespace ContactsBusinessLayer
         public DateTime DateOfBirth { get; set; }
         public string ImagePath { get; set; }
 
+        public enum enMode { AddNew = 1, Update = 2 };
+        public  enMode Mode { get; set; }
+
+        public ClsContact()
+        {
+            this.ID = -1;
+            this.FirstName = "";
+            this.LastName = "";
+            this.Email = "";
+            this.Phone = "";
+            this.Address = "";
+            this.DateOfBirth = DateTime.Now;
+            this.CountryID = -1;
+            this.ImagePath = "";
+
+            Mode = enMode.Update;
+
+        }
 
         private ClsContact(int contactID, string firstName, string lastName, string email, string phone, string address, DateTime dateOfBirth, int countryID, string imagePath)
-        {   
-            this.ID =contactID;
+        {
+            this.ID = contactID;
             this.FirstName = firstName;
             this.LastName = lastName;
             this.Email = email;
             this.Phone = phone;
-            this.Address=address ;
-            this.DateOfBirth =dateOfBirth;
-            this.CountryID =countryID;
-            this.ImagePath =imagePath;
+            this.Address = address;
+            this.DateOfBirth = dateOfBirth;
+            this.CountryID = countryID;
+            this.ImagePath = imagePath;
 
         }
 
 
 
         public static ClsContact Find(int ContactID)
-        {
+        {                                                           
 
             string FirstName = "", LastName = "", Email = "", Address = "", Phone = "", Imagepath = "";
             int CountryID = -1;
@@ -54,5 +74,59 @@ namespace ContactsBusinessLayer
 
 
         }
+
+
+
+        private bool _AddNewContact()
+        {
+            bool AddStatus = false;
+
+            int ContactID = ContactsDataAccess.AddNewContact( this.FirstName, this.LastName, this.Email, this.Phone, this.Address, this.DateOfBirth, this.CountryID, this.ImagePath);
+
+            if (ContactID != -1)
+            {
+                AddStatus = true;
+            }
+
+
+            return AddStatus;
+
+        }
+
+
+         public  bool Save()
+        {
+            switch (Mode) {
+
+                case enMode.AddNew:
+                    if (_AddNewContact())
+                    {
+                        Mode = enMode.Update;
+                        return true;
+
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                case enMode.Update:
+
+                    //if (UpdateContact())
+                    //{
+
+                    //}
+                    return false;
+                default:
+                        return false;
+                    
+                    
+            
+            
+            }
+
+        }
+
+
+
     }
 }

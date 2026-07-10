@@ -40,10 +40,44 @@ internal class Program
         Console.WriteLine("Contact Not Found :(");
     }
 
+    public static void TestAddNewContact()
+    {
+        ContactsBusinessLayer.ClsContact NewContact =  new ContactsBusinessLayer.ClsContact();
+
+        NewContact.FirstName = "Mohamed";
+        NewContact.LastName = "Mustafa";
+        NewContact.Email = "mohamedexamplde@gmail.com";
+        NewContact.Phone= "0909092425";
+        NewContact.Address = "12-khortoum -rmf";
+        NewContact.CountryID = 1;
+        NewContact.DateOfBirth = new DateTime(2002, 5, 3, 12, 3, 3);
+        NewContact.ImagePath= "f:/Images/myPhoto.jpg";
+        NewContact.Mode = ClsContact.enMode.AddNew;
+        
+
+
+        if (NewContact.Save())
+        {
+            Console.WriteLine("Contact Added Successfullly :)");
+
+
+        }
+        else
+        {
+
+            Console.WriteLine("Contact not save :(");
+        }
+
+
+
+    }
+
 
     static void Main(string[] args)
     {
-        testFindContact(1);
+        //testFindContact(1);
+
+        TestAddNewContact();
 
     }
 

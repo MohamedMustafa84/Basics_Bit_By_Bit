@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Data;
 using System.Net;
-using Microsoft.SqlServer.Server;
+using Microsoft.Data.SqlClient;
 
-using System.Data.SqlClient;
 
 namespace ContactsDataAccessLayer
 {
@@ -74,7 +73,74 @@ namespace ContactsDataAccessLayer
         }
 
 
+        static public int AddNewContact(string FirstName, string LastName,  string Email, string Phone, string Address, DateTime DateOfBirth, int CountryID, string ImagePath)
+        {
 
+            int NewContactID = -1;
+
+
+            SqlConnection Connection = new SqlConnection(DataAccessSettings.ConnectionString);
+
+            string query = @"insert into Contacts (FirstName,LastName,Email,Phone,Address,DateOfBirth,CountryID , ImagePath)
+                            Values (@FirstName,@LastName,@Email,@Phone,@Address ,@DateOfBirth,@CountryID,@ImagePath);
+                               SELECT SCOPE_IDENTITY();";
+
+            SqlCommand Command = new SqlCommand(query, Connection);
+
+            Command.Parameters.AddWithValue("@FirstName", FirstName);
+            Command.Parameters.AddWithValue("@LastName", LastName);
+            Command.Parameters.AddWithValue("@Email", Email);
+            Command.Parameters.AddWithValue("@Phone", Phone);
+            Command.Parameters.AddWithValue("@Address", Address);
+            Command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
+            Command.Parameters.AddWithValue("@CountryID", CountryID);
+
+
+
+            if(ImagePath != "")
+            {
+                Command.Parameters.AddWithValue("@ImagePath", ImagePath);
+
+            }
+            else
+            {
+                Command.Parameters.AddWithValue("@ImagePath", System.DBNull.Value);
+
+            }
+
+
+
+
+            try
+                {
+                    Connection.Open();
+
+                    object Result = Command.ExecuteScalar();
+
+                    if (Result != null && int.TryParse(Result.ToString(), out int InsertedID))
+                    {
+
+                        NewContactID = InsertedID;
+
+                    }
+
+
+                }
+                catch (Exception ex)
+                {
+                    NewContactID = -1;
+                    Console.WriteLine($"Sql Error : {ex.Message}");
+
+                }
+                finally
+                {
+                    Connection.Close();
+                }
+
+            return NewContactID;
+
+
+        }
 
 
     }
