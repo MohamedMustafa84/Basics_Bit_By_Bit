@@ -94,7 +94,21 @@ namespace ContactsBusinessLayer
         }
 
 
-         public  bool Save()
+        private bool _UpdateContact()
+        {
+
+            int ContactID = ContactsDataAccess.UpdateContact(this.ID ,this.FirstName, this.LastName, this.Email, this.Phone, this.Address, this.DateOfBirth, this.CountryID, this.ImagePath);
+
+            
+
+
+            return (ContactID > 0);
+
+        }
+
+
+
+        public  bool Save()
         {
             switch (Mode) {
 
@@ -111,11 +125,7 @@ namespace ContactsBusinessLayer
                     }
                 case enMode.Update:
 
-                    //if (UpdateContact())
-                    //{
-
-                    //}
-                    return false;
+                    return _UpdateContact();
                 default:
                         return false;
                     

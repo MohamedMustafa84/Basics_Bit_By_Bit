@@ -143,5 +143,74 @@ namespace ContactsDataAccessLayer
         }
 
 
+
+        static public int UpdateContact(int ContactID ,string FirstName, string LastName, string Email, string Phone, string Address, DateTime DateOfBirth, int CountryID, string ImagePath)
+        {
+
+
+
+            SqlConnection Connection = new SqlConnection(DataAccessSettings.ConnectionString);
+
+            string query = @"Update Contacts set
+                            FirstName =@FirstName,
+                            LastName =@LastName,
+                            Email =@Email,
+                            Phone =@Phone,
+                            Address =@Address,
+                            DateOfBirth =@DateOfBirth,
+                            CountryID=@CountryID
+                                where ContactID = @ContactID";
+
+            SqlCommand Command = new SqlCommand(query, Connection);
+
+            Command.Parameters.AddWithValue("@ContactID", ContactID);
+            Command.Parameters.AddWithValue("@FirstName", FirstName);
+            Command.Parameters.AddWithValue("@LastName", LastName);
+            Command.Parameters.AddWithValue("@Email", Email);
+            Command.Parameters.AddWithValue("@Phone", Phone);
+            Command.Parameters.AddWithValue("@Address", Address);
+            Command.Parameters.AddWithValue("@DateOfBirth", DateOfBirth);
+            Command.Parameters.AddWithValue("@CountryID", CountryID);
+
+
+
+            if (ImagePath != "")
+            {
+                Command.Parameters.AddWithValue("@ImagePath", ImagePath);
+
+            }
+            else
+            {
+                Command.Parameters.AddWithValue("@ImagePath", System.DBNull.Value);
+
+            }
+
+
+            int RowsEffected = 0;
+
+            try
+            {
+                Connection.Open();
+
+                RowsEffected = Command.ExecuteNonQuery();
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Sql Error : {ex.Message}");
+
+            }
+            finally
+            {
+                Connection.Close();
+            }
+
+            return RowsEffected;
+            
+
+
+        }
+
     }
 }

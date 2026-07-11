@@ -25,6 +25,7 @@ internal class Program
         Console.WriteLine($"Country ID : {Contact.CountryID}");
         Console.WriteLine($"Date Of Birth : {Contact.DateOfBirth}");
         Console.WriteLine($"Image Path : {Contact.ImagePath}");
+        Console.WriteLine("---------------------------------------------------");
 
     }
 
@@ -73,11 +74,59 @@ internal class Program
     }
 
 
+    public static void TestUpdateContact(int ContactID)
+    {
+
+
+        ClsContact Contact = ClsContact.Find(ContactID);
+
+        if(Contact != null)
+        {
+            Contact.FirstName = "Mohamed";
+            Contact.LastName = "Mustafa";
+            Contact.Email = "mohamedexamplde@gmail.com";
+            Contact.Phone = "0909092425";
+            Contact.Address = "12-khortoum -rmf";
+            Contact.CountryID = 1;
+            Contact.DateOfBirth = new DateTime(2002, 5, 3, 12, 3, 3);
+            Contact.ImagePath = "f:/Images/myPhoto.jpg";
+            Contact.Mode = ClsContact.enMode.Update;
+
+
+
+            if (Contact.Save())
+            {
+                Console.WriteLine("Contact Updated Successfullly :)");
+
+
+            }
+            else
+            {
+
+                Console.WriteLine($"Erorr while Updating Contact with ID {ContactID}");
+            }
+            return;
+
+        }
+        else
+        {
+            Console.WriteLine($"Contact With ID {ContactID} Not Found :(");
+        }
+
+        
+
+
+
+    }
+
+
     static void Main(string[] args)
     {
-        //testFindContact(1);
+        testFindContact(2);
 
-        TestAddNewContact();
+        //TestAddNewContact();
+
+        TestUpdateContact(2);
 
     }
 
