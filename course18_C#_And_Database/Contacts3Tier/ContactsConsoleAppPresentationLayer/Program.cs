@@ -124,14 +124,25 @@ internal class Program
 
      public static void TestDeleteContact(int ID)
     {
-        if (ClsContact.DeleteContact(ID))
+
+        if (ClsContact.ISContactExist(ID))
         {
-            Console.WriteLine("Contact Deleted Succssfully :)");
+            if (ClsContact.DeleteContact(ID))
+            {
+                Console.WriteLine("Contact Deleted Succssfully :)");
+            }
+            else
+            {
+                Console.WriteLine("the Deletion Operation Faild :(");
+            }
         }
         else
         {
-            Console.WriteLine("the Deletion Operation Faild :(");
+            Console.WriteLine($"Contact With ID {ID} Not Found ");
         }
+
+
+        
 
     }
 
@@ -160,6 +171,18 @@ internal class Program
 
 
 
+     public static void TestContactExistance(int ID)
+    {
+        if (ClsContact.ISContactExist(ID))
+        {
+            Console.WriteLine($"Contact with ID {ID} Is Exist ");
+        }
+        else
+        {
+            Console.WriteLine($"Contact With ID {ID} Not Found ");
+        }
+    }
+
 
     static void Main(string[] args)
     {
@@ -169,8 +192,11 @@ internal class Program
 
         //TestUpdateContact(2);
 
-        //TestDeleteContact(16);
-        TestGetAllContacts();
+        TestDeleteContact(16);
+
+        //TestGetAllContacts();
+
+        //TestContactExistance(1);
 
     }
 

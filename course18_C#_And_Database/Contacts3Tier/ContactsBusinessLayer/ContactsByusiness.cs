@@ -142,6 +142,11 @@ namespace ContactsBusinessLayer
             return ContactsDataAccess.DeleteContact(ContactID);
         }
 
+        public static bool ISContactExist(int ContactID)
+        {
+            return ContactsDataAccess.IsExist(ContactID);
+        }
+
         public static DataTable GetContactsList()
         {
             return ContactsDataAccess.GetAllContacts();
