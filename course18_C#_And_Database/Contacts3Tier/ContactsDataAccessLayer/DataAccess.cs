@@ -212,5 +212,94 @@ namespace ContactsDataAccessLayer
 
         }
 
+
+
+
+        static public bool DeleteContact(int ContactID)
+        {
+
+
+
+            SqlConnection Connection = new SqlConnection(DataAccessSettings.ConnectionString);
+
+            string query = @"delete Contacts where ContactID =@ContactID";
+
+            SqlCommand Command = new SqlCommand(query, Connection);
+
+            Command.Parameters.AddWithValue("@ContactID", ContactID);
+
+
+            int RowsEffected = 0;
+
+            try
+            {
+                Connection.Open();
+
+                RowsEffected = Command.ExecuteNonQuery();
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Sql Error : {ex.Message}");
+
+            }
+            finally
+            {
+                Connection.Close();
+            }
+
+            return (RowsEffected >0);
+
+
+
+        }
+
+
+
+
+        static public DataTable GetAllContacts()
+        {
+            DataTable ContactsTable = new DataTable();  
+
+
+            SqlConnection Connection = new SqlConnection(DataAccessSettings.ConnectionString);
+
+            string query = "select * from Contacts";
+
+            SqlCommand Command = new SqlCommand(query, Connection);
+
+
+
+
+            try
+            {
+                Connection.Open();
+
+                SqlDataReader reader = Command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    ContactsTable.Load(reader);
+                }
+                reader.Close();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Sql Error : {ex.Message}");
+
+            }
+            finally
+            {
+                Connection.Close();
+            }
+
+            return ContactsTable;
+
+
+
+        }
+
     }
 }

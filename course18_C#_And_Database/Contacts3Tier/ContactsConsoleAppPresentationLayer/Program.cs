@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Specialized;
+using System.Data;
 using ContactsBusinessLayer;
 
 
@@ -120,13 +122,55 @@ internal class Program
     }
 
 
+     public static void TestDeleteContact(int ID)
+    {
+        if (ClsContact.DeleteContact(ID))
+        {
+            Console.WriteLine("Contact Deleted Succssfully :)");
+        }
+        else
+        {
+            Console.WriteLine("the Deletion Operation Faild :(");
+        }
+
+    }
+
+
+     public static void TestGetAllContacts()
+    {
+        DataTable ContactsTable = ClsContact.GetContactsList();
+
+        if(ContactsTable != null)
+        {
+            Console.WriteLine("ContactID \t| FirstName\t | LastName\t| Email\t\t | Phone\t\t| DateOFBirth \t\t |CountryID ");
+
+
+
+            foreach(DataRow Row in ContactsTable.Rows)
+            {
+                Console.WriteLine($"{Row["ContactID"]} \t \t| {Row["FirstName"]}\t |{Row["LastName"]}\t | {Row["Email"]}\t\t | {Row["Phone"]}\t\t | {Row["DateOFBirth"]}\t\t | {Row["CountryID"]}");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Erorr while Getting the Data ");
+        }
+
+    }
+
+
+
+
     static void Main(string[] args)
     {
-        testFindContact(2);
+        //testFindContact(2);
 
         //TestAddNewContact();
 
-        TestUpdateContact(2);
+        //TestUpdateContact(2);
+
+        //TestDeleteContact(16);
+        TestGetAllContacts();
 
     }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Net;
 using System.Security.Policy;
 using System.Xml.Serialization;
@@ -136,7 +137,15 @@ namespace ContactsBusinessLayer
 
         }
 
+        public static bool DeleteContact(int ContactID)
+        {
+            return ContactsDataAccess.DeleteContact(ContactID);
+        }
 
+        public static DataTable GetContactsList()
+        {
+            return ContactsDataAccess.GetAllContacts();
+        }
 
     }
 }
