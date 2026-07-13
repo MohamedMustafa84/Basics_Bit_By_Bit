@@ -213,6 +213,26 @@ internal class Program
         }
 
     }
+
+    public static void TestAddNewCountry()
+    {
+
+        ClsContact.clsCountries Country = new ClsContact.clsCountries();
+
+        Country.CountryName = "Sudan";
+        Country.eMode = ClsContact.clsCountries.enMode.AddNew;
+
+        if (Country.Save())
+        {
+            Console.WriteLine($"Country {Country.CountryName} Added Successfully :) ");
+
+        }
+        else
+        {
+            Console.WriteLine($"unable to add Country {Country.CountryName} :(");
+        }
+
+    }
     static void Main(string[] args)
     {
         //testFindContact(2);
@@ -227,8 +247,13 @@ internal class Program
 
         //TestContactExistance(1);
 
-        TestFindCountryByID(1);
-        TestFindCountryByName("United states");
+
+
+
+        //TestFindCountryByID(5);
+        TestFindCountryByName("Sudan");
+
+        TestAddNewCountry();
 
     }
 

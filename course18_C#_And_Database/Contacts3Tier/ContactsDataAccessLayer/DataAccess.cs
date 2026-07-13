@@ -450,6 +450,58 @@ namespace ContactsDataAccessLayer
         }
 
 
+        static public int AddNewCountry( string CountryName)
+        {
+
+            int NewCountryID = -1;
+
+
+            SqlConnection Connection = new SqlConnection(DataAccessSettings.ConnectionString);
+
+            string query = @"insert into Countries (CountryName)
+                            Values (@CountryName);
+                               SELECT SCOPE_IDENTITY();";
+
+            SqlCommand Command = new SqlCommand(query, Connection);
+
+            Command.Parameters.AddWithValue("@CountryName", CountryName);
+
+
+
+
+
+            try
+            {
+                Connection.Open();
+
+                object Result = Command.ExecuteScalar();
+
+                if (Result != null && int.TryParse(Result.ToString(), out int InsertedID))
+                {
+
+                    NewCountryID = InsertedID;
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                NewCountryID = -1;
+                Console.WriteLine($"Sql Error : {ex.Message}");
+
+            }
+            finally
+            {
+                Connection.Close();
+            }
+
+            return NewCountryID;
+
+
+        }
+
+
 
     }
 

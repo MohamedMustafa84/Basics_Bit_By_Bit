@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Security.Policy;
 using System.Xml.Serialization;
 using ContactsDataAccessLayer;
@@ -159,13 +160,23 @@ namespace ContactsBusinessLayer
 
 
 
-            public int ID { get; }
+            public int CountryID { get; }
             public string CountryName { get; set; }
+            public  enum enMode { Update=1,AddNew=2};
 
+            public enMode eMode = enMode.Update;
+
+            public clsCountries()
+            {
+                this.CountryID = -1;
+                this.CountryName = "";
+                this.eMode = enMode.Update;
+                
+            }
 
             private clsCountries(int id,string countryName)
             {
-                this.ID = id;
+                this.CountryID = id;
                 this.CountryName = countryName;
 
                 
@@ -185,6 +196,37 @@ namespace ContactsBusinessLayer
                 return CountryID;
             }
 
+
+            private bool _AddNewCountry(string CountryName)
+            {
+                int CountryID=ContactsDataAccess.AddNewCountry(CountryName);
+
+                return (CountryID > 0);
+            }
+
+            public bool Save()
+            {
+                switch (eMode)
+                {
+                    case enMode.AddNew :
+
+                        if (_AddNewCountry(CountryName))
+                        {
+                            this.eMode= enMode.Update;
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+
+                    case enMode.Update:
+                        return false;
+
+                    default:
+                        return false;
+                }
+            }
         }
 
     }
