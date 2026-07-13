@@ -152,5 +152,40 @@ namespace ContactsBusinessLayer
             return ContactsDataAccess.GetAllContacts();
         }
 
+
+
+        public  class clsCountries {
+
+
+
+
+            public int ID { get; }
+            public string CountryName { get; set; }
+
+
+            private clsCountries(int id,string countryName)
+            {
+                this.ID = id;
+                this.CountryName = countryName;
+
+                
+            }
+
+
+            public static bool FindCountryByID(int ID,ref string CountryName)
+            {
+                return ContactsDataAccess.FindCountryByID(ID,ref CountryName);
+            }
+
+            public static int  FindCountryByName( string CountryName)
+            {
+                int CountryID =-1;
+                ContactsDataAccess.FindCountryByName(ref CountryID, CountryName);
+
+                return CountryID;
+            }
+
+        }
+
     }
 }

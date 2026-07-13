@@ -59,6 +59,8 @@ namespace ContactsDataAccessLayer
             }
             catch (Exception ex)
             {
+
+                Console.WriteLine("Error :"+ex.Message);
                 ISFound = false;
 
             }
@@ -270,7 +272,6 @@ namespace ContactsDataAccessLayer
             Command.Parameters.AddWithValue("@ContactID", ContactID);
 
 
-            int RowsEffected = 0;
 
             try
             {
@@ -347,5 +348,112 @@ namespace ContactsDataAccessLayer
 
         }
 
+
+
+
+        static public bool FindCountryByID(int ID, ref string CountryName)
+        {
+            bool ISFound = false;
+
+
+
+            SqlConnection Connection = new SqlConnection(DataAccessSettings.ConnectionString);
+
+            string query = "Select CountryName from Countries where CountryID = @CountryID ";
+
+            SqlCommand Command = new SqlCommand(query, Connection);
+
+            Command.Parameters.AddWithValue("@CountryID", ID);
+
+
+
+            try
+            {
+                Connection.Open();
+
+                SqlDataReader reader = Command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    ISFound = true;
+                    CountryName = (string)reader["CountryName"];
+                  
+                }
+
+                reader.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                ISFound = false;
+
+            }
+            finally
+            {
+                Connection.Close();
+            }
+
+            return ISFound;
+
+
+        }
+
+        static public bool FindCountryByName(ref int ID, string CountryName)
+        {
+            bool ISFound = false;
+
+
+
+            SqlConnection Connection = new SqlConnection(DataAccessSettings.ConnectionString);
+
+            string query = "Select CountryID from Countries where CountryName = @CountryName ";
+
+            SqlCommand Command = new SqlCommand(query, Connection);
+
+            Command.Parameters.AddWithValue("@CountryName", CountryName);
+
+
+
+            try
+            {
+                Connection.Open();
+
+                SqlDataReader reader = Command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    ISFound = true;
+                    ID = (int)reader["CountryID"];
+
+                }
+
+                reader.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                ISFound = false;
+
+            }
+            finally
+            {
+                Connection.Close();
+            }
+
+            return ISFound;
+
+
+        }
+
+
+
     }
+
+
+
+
 }

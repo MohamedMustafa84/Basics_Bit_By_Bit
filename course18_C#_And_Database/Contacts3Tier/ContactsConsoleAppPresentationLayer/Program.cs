@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Specialized;
 using System.Data;
+using System.Reflection.Metadata.Ecma335;
 using ContactsBusinessLayer;
 
 
@@ -184,6 +185,34 @@ internal class Program
     }
 
 
+    public static void TestFindCountryByID(int ID)
+    {
+        string CountryName = "";
+
+        if (ClsContact.clsCountries.FindCountryByID(ID,ref CountryName))
+        {
+            Console.WriteLine($"the Country with ID {ID} Is {CountryName}");
+        }
+        else
+        {
+            Console.WriteLine($"Counttry With ID {ID} Not Found ");
+        }
+    }
+
+    public static void TestFindCountryByName(string CountryName)
+    {
+        int CountryID = ClsContact.clsCountries.FindCountryByName(CountryName);
+
+        if (CountryID>0)
+        {
+            Console.WriteLine($"the  ID for {CountryName} is {CountryID}" );
+        }
+        else
+        {
+            Console.WriteLine($"they is no country with the Name {CountryName} is the Database");
+        }
+
+    }
     static void Main(string[] args)
     {
         //testFindContact(2);
@@ -192,11 +221,14 @@ internal class Program
 
         //TestUpdateContact(2);
 
-        TestDeleteContact(16);
+        //TestDeleteContact(16);
 
         //TestGetAllContacts();
 
         //TestContactExistance(1);
+
+        TestFindCountryByID(1);
+        TestFindCountryByName("United states");
 
     }
 
