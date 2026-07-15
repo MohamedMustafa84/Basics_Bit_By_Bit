@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Security.Policy;
 using System.Xml.Serialization;
 using ContactsDataAccessLayer;
+using Microsoft.Extensions.Logging.Abstractions;
 
 
 namespace ContactsBusinessLayer
@@ -183,9 +184,18 @@ namespace ContactsBusinessLayer
             }
 
 
-            public static bool FindCountryByID(int ID,ref string CountryName)
+            public static clsCountries FindCountryByID(int ID)
             {
-                return ContactsDataAccess.FindCountryByID(ID,ref CountryName);
+                string CountryName="";
+
+                if( ContactsDataAccess.FindCountryByID(ID,ref CountryName))
+                {
+                    return  new clsCountries(ID,CountryName);
+                }
+                else
+                {
+                    return null;
+                }
             }
 
             public static int  FindCountryByName( string CountryName)
@@ -202,6 +212,12 @@ namespace ContactsBusinessLayer
                 int CountryID=ContactsDataAccess.AddNewCountry(CountryName);
 
                 return (CountryID > 0);
+            }
+
+            private bool _UpdateCountry()
+            {
+                int UpdatedRows = ContactsDataAccess.UpdateCountry(this.CountryID, this.CountryName);
+                return (UpdatedRows >0);
             }
 
             public bool Save()
@@ -221,7 +237,15 @@ namespace ContactsBusinessLayer
                         }
 
                     case enMode.Update:
-                        return false;
+
+                        if (_UpdateCountry())
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
 
                     default:
                         return false;

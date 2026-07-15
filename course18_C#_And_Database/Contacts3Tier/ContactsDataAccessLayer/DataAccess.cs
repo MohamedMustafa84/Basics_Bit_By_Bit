@@ -503,6 +503,48 @@ namespace ContactsDataAccessLayer
 
 
 
+
+        static public int UpdateCountry( int ID ,string CountryName)
+        {
+            int EffectedRow = 0;
+
+            SqlConnection Connection = new SqlConnection(DataAccessSettings.ConnectionString);
+
+            string query = @"Update Countries set CountryName=@countryName where CountryID=@CountryID";
+
+            SqlCommand Command = new SqlCommand(query, Connection);
+
+            Command.Parameters.AddWithValue("@CountryID", ID);
+            Command.Parameters.AddWithValue("@CountryName", CountryName);
+
+
+
+
+
+            try
+            {
+                Connection.Open();
+
+                EffectedRow = Command.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Sql Error : {ex.Message}");
+
+            }
+            finally
+            {
+                Connection.Close();
+            }
+
+            return EffectedRow;
+
+
+        }
+
+
+
     }
 
 

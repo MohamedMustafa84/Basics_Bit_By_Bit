@@ -187,11 +187,11 @@ internal class Program
 
     public static void TestFindCountryByID(int ID)
     {
-        string CountryName = "";
+        ClsContact.clsCountries Country = ClsContact.clsCountries.FindCountryByID(ID);
 
-        if (ClsContact.clsCountries.FindCountryByID(ID,ref CountryName))
+        if (Country != null)
         {
-            Console.WriteLine($"the Country with ID {ID} Is {CountryName}");
+            Console.WriteLine($"the Country with ID {ID} Is {Country.CountryName}");
         }
         else
         {
@@ -233,6 +233,34 @@ internal class Program
         }
 
     }
+
+    public static void TestUpdateCountry(int CountryID ,string CountryName)
+    {
+
+
+
+        ClsContact.clsCountries Country = ClsContact.clsCountries.FindCountryByID(CountryID);
+
+
+        if(Country != null)
+        {
+            Country.CountryName = CountryName;
+
+            if (Country.Save())
+            {
+                Console.WriteLine("Country Updated Successfully :)");
+            }
+            else
+            {
+                Console.WriteLine("Unable To Save the Update :(");
+            }
+        }
+        else
+        {
+            Console.WriteLine($"Coutry with ID {CountryID} is not Found :(");
+        }
+    }
+
     static void Main(string[] args)
     {
         //testFindContact(2);
@@ -250,10 +278,12 @@ internal class Program
 
 
 
-        //TestFindCountryByID(5);
-        TestFindCountryByName("Sudan");
+        //TestFindCountryByID(6);
+        //TestFindCountryByName("Sudan");
 
-        TestAddNewCountry();
+        //TestAddNewCountry();
+
+        TestUpdateCountry(10,"Sudan");
 
     }
 
