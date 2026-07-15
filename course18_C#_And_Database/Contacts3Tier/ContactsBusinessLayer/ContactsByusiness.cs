@@ -251,6 +251,13 @@ namespace ContactsBusinessLayer
                         return false;
                 }
             }
+
+
+            public static bool DeleteCountry(int ID)
+            {
+
+                return ContactsDataAccess.DeleteCountry(ID);
+            }
         }
 
     }

@@ -214,22 +214,30 @@ internal class Program
 
     }
 
-    public static void TestAddNewCountry()
+    public static void TestAddNewCountry(string CountryName)
     {
 
-        ClsContact.clsCountries Country = new ClsContact.clsCountries();
-
-        Country.CountryName = "Sudan";
-        Country.eMode = ClsContact.clsCountries.enMode.AddNew;
-
-        if (Country.Save())
+        if (ClsContact.clsCountries.FindCountryByName(CountryName) <1)
         {
-            Console.WriteLine($"Country {Country.CountryName} Added Successfully :) ");
 
+            ClsContact.clsCountries Country = new ClsContact.clsCountries();
+
+            Country.CountryName = "Sudan";
+            Country.eMode = ClsContact.clsCountries.enMode.AddNew;
+
+            if (Country.Save())
+            {
+                Console.WriteLine($"Country {Country.CountryName} Added Successfully :) ");
+
+            }
+            else
+            {
+                Console.WriteLine($"unable to add Country {Country.CountryName} :(");
+            }
         }
         else
         {
-            Console.WriteLine($"unable to add Country {Country.CountryName} :(");
+            Console.WriteLine("this Country is Already Exist :) ");
         }
 
     }
@@ -261,6 +269,19 @@ internal class Program
         }
     }
 
+
+
+    public static void TestDeleteCountry(int ID)
+    {
+        if (ClsContact.clsCountries.DeleteCountry(ID))
+        {
+            Console.WriteLine("Country Deleted Succssfully :)");
+        }
+        else
+        {
+            Console.WriteLine($"Unable To Delete Country With ID {ID} :(");
+        }
+    }
     static void Main(string[] args)
     {
         //testFindContact(2);
@@ -281,9 +302,12 @@ internal class Program
         //TestFindCountryByID(6);
         //TestFindCountryByName("Sudan");
 
-        //TestAddNewCountry();
+        //TestAddNewCountry("Sudan");
 
-        TestUpdateCountry(10,"Sudan");
+        //TestUpdateCountry(6,"Sudan");
+
+
+        TestDeleteCountry(9);
 
     }
 

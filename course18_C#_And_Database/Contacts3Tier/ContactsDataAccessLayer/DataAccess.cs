@@ -544,6 +544,46 @@ namespace ContactsDataAccessLayer
         }
 
 
+        static public bool DeleteCountry(int ID)
+        {
+            int EffectedRow = 0;
+
+            SqlConnection Connection = new SqlConnection(DataAccessSettings.ConnectionString);
+
+            string query = @"Delete Countries  where CountryID=@CountryID";
+
+            SqlCommand Command = new SqlCommand(query, Connection);
+
+            Command.Parameters.AddWithValue("@CountryID", ID);
+
+
+
+
+
+            try
+            {
+                Connection.Open();
+
+                EffectedRow = Command.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Sql Error : {ex.Message}");
+
+            }
+            finally
+            {
+                Connection.Close();
+            }
+
+            return (EffectedRow >0);
+
+
+        }
+
+
+
 
     }
 
