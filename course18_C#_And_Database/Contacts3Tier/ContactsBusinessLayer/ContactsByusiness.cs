@@ -263,6 +263,12 @@ namespace ContactsBusinessLayer
             {
                 return ContactsDataAccess.GetAllCountries();
             }
+
+
+            public static bool IsCountryExist(string CountryName)
+            {
+                return ContactsDataAccess.IsCountryExist(CountryName);
+            }
         }
 
     }

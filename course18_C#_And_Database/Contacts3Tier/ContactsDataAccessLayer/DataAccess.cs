@@ -627,6 +627,49 @@ namespace ContactsDataAccessLayer
 
         }
 
+
+        public static bool IsCountryExist(string CountryName)
+        {
+
+
+            SqlConnection Connection = new SqlConnection(DataAccessSettings.ConnectionString);
+
+            string query = @"select Found=1 from Countries where CountryName =@CountryName";
+
+            SqlCommand Command = new SqlCommand(query, Connection);
+
+            Command.Parameters.AddWithValue("@CountryName", CountryName);
+
+
+
+            bool isExist = false;
+            try
+            {
+                Connection.Open();
+
+                SqlDataReader reader = Command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    isExist = true;
+                }
+                
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Sql Error : {ex.Message}");
+
+            }
+            finally
+            {
+                Connection.Close();
+            }
+
+            return isExist;
+
+        }
+
     }
 
 

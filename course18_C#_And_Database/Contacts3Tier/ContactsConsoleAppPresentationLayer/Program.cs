@@ -299,6 +299,20 @@ internal class Program
             }
         }
     }
+
+
+
+    public static void TestCountryExistance(string CountryName)
+    {
+        if (ClsContact.clsCountries.IsCountryExist(CountryName))
+        {
+            Console.WriteLine($"Country {CountryName} is Exist ");
+        }
+        else
+        {
+            Console.WriteLine($"they is no country with the name {CountryName} in the Database ");
+        }
+    }
     static void Main(string[] args)
     {
         //testFindContact(2);
@@ -324,9 +338,12 @@ internal class Program
         //TestUpdateCountry(6,"Sudan");
 
 
-        TestDeleteCountry(8);
+        //TestDeleteCountry(8);
 
-        TestGetAllCountries();
+        //TestGetAllCountries();
+
+
+        TestCountryExistance("Sudann");
 
     }
 
