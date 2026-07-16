@@ -282,6 +282,23 @@ internal class Program
             Console.WriteLine($"Unable To Delete Country With ID {ID} :(");
         }
     }
+
+
+
+    public static void TestGetAllCountries()
+    {
+        DataTable CountriesTable = ClsContact.clsCountries.GetAllCountries();
+
+        if(CountriesTable != null)
+        {
+            Console.WriteLine("CountryID        countryName");
+
+            foreach (DataRow Row in CountriesTable.Rows)
+            {
+                Console.WriteLine("   " + Row[0].ToString() +"               " + Row[1]  );
+            }
+        }
+    }
     static void Main(string[] args)
     {
         //testFindContact(2);
@@ -307,7 +324,9 @@ internal class Program
         //TestUpdateCountry(6,"Sudan");
 
 
-        TestDeleteCountry(9);
+        TestDeleteCountry(8);
+
+        TestGetAllCountries();
 
     }
 

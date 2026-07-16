@@ -544,7 +544,7 @@ namespace ContactsDataAccessLayer
         }
 
 
-        static public bool DeleteCountry(int ID)
+         public static bool DeleteCountry(int ID)
         {
             int EffectedRow = 0;
 
@@ -582,8 +582,50 @@ namespace ContactsDataAccessLayer
 
         }
 
+        
+        public static DataTable GetAllCountries()
+        {
+            DataTable dtCountries = new DataTable();
 
 
+            SqlConnection Connection = new SqlConnection(DataAccessSettings.ConnectionString);
+
+            string query = "select * from Countries";
+
+            SqlCommand Command = new SqlCommand(query, Connection);
+
+
+
+
+            try
+            {
+                Connection.Open();
+
+                SqlDataReader reader = Command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    dtCountries.Load(reader);
+                }
+                else
+                {
+                    dtCountries = null;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Sql Error : {ex.Message}");
+
+            }
+            finally
+            {
+                Connection.Close();
+            }
+
+            return dtCountries;
+
+        }
 
     }
 

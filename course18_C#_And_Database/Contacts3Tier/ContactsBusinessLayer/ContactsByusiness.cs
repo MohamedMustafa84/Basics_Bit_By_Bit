@@ -258,6 +258,11 @@ namespace ContactsBusinessLayer
 
                 return ContactsDataAccess.DeleteCountry(ID);
             }
+
+            public static DataTable GetAllCountries()
+            {
+                return ContactsDataAccess.GetAllCountries();
+            }
         }
 
     }
