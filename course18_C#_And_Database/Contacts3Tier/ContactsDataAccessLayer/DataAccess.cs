@@ -670,6 +670,43 @@ namespace ContactsDataAccessLayer
 
         }
 
+
+        
+        public static bool AddNEewColumnToTable()
+        {
+
+
+            SqlConnection Connection = new SqlConnection(DataAccessSettings.ConnectionString);
+
+            string query = @"Alter Table Countries add Code nvarchar(3) ;
+                            Alter Table Countries add PhoneCode nvarchar(3)";
+
+            SqlCommand Command = new SqlCommand(query, Connection);
+
+            
+
+            int EffectedRows = 0;
+
+            try
+            {
+                Connection.Open();
+
+               EffectedRows = Command.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Sql Error : {ex.Message}");
+
+            }
+            finally
+            {
+                Connection.Close();
+            }
+
+            return EffectedRows>0;
+
+        }
     }
 
 

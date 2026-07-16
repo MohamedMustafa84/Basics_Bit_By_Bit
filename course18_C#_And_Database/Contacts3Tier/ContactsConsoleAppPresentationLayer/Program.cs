@@ -313,6 +313,22 @@ internal class Program
             Console.WriteLine($"they is no country with the name {CountryName} in the Database ");
         }
     }
+
+
+    public static void TestAddNewColumn()
+    {
+        
+
+        if (ClsContact.AddColumnToTable())
+        {
+            Console.WriteLine("Column Added Successfully :)");
+            return;
+        }
+        else
+        {
+            Console.WriteLine("Error while add column :(");
+        }
+    }
     static void Main(string[] args)
     {
         //testFindContact(2);
@@ -343,7 +359,10 @@ internal class Program
         //TestGetAllCountries();
 
 
-        TestCountryExistance("Sudann");
+        //TestCountryExistance("Sudan");
+
+        TestAddNewColumn();
+
 
     }
 

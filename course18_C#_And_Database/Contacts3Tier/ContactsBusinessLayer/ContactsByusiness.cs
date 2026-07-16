@@ -156,6 +156,14 @@ namespace ContactsBusinessLayer
 
 
 
+
+
+        public static bool AddColumnToTable()
+        {
+            return ContactsDataAccess.AddNEewColumnToTable();
+
+        }
+
         public  class clsCountries {
 
 
