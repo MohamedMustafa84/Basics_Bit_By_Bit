@@ -48,7 +48,7 @@ internal class Program
     {
         ContactsBusinessLayer.ClsContact NewContact =  new ContactsBusinessLayer.ClsContact();
 
-        NewContact.FirstName = "Mohamed";
+        NewContact.FirstName = "Mohammed";
         NewContact.LastName = "Mustafa";
         NewContact.Email = "mohamedexamplde@gmail.com";
         NewContact.Phone= "0909092425";
@@ -333,7 +333,7 @@ internal class Program
     {
         //testFindContact(2);
 
-        //TestAddNewContact();
+        TestAddNewContact();
 
         //TestUpdateContact(2);
 
@@ -361,7 +361,7 @@ internal class Program
 
         //TestCountryExistance("Sudan");
 
-        TestAddNewColumn();
+        //TestAddNewColumn();
 
 
     }
