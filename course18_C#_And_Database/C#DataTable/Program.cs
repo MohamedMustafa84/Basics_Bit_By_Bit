@@ -32,9 +32,36 @@ internal class Program
 
         // List Employees :
 
-           foreach(DataRow Row in dtEmployees.Rows)
+        Console.WriteLine("Employees List ::-\n");
+        foreach (DataRow Row in dtEmployees.Rows)
         {
             Console.WriteLine($"ID :{Row["ID"]}  FullName : {Row["FirstName"]} {Row["LastName"]} Phone :{Row["Phone"]}  Email : {Row["Email"]} Address : {Row["Address"]} Salary : {Row["Salary"]} Date : {Row["Date"]}");
         }
+
+        int EmployeesCount = 0;
+        double TotalSalary = 0;
+        double AvarageSalasries = 0;
+        double MinSalary = 0;
+        double MaxSalary = 0;
+
+        EmployeesCount = dtEmployees.Rows.Count;
+
+        TotalSalary = Convert.ToDouble(dtEmployees.Compute("sum(Salary)", string.Empty));
+        AvarageSalasries = Convert.ToDouble(dtEmployees.Compute("AVG(Salary)", string.Empty));
+        MinSalary = Convert.ToDouble(dtEmployees.Compute("Min(Salary)", string.Empty));
+        MaxSalary = Convert.ToDouble(dtEmployees.Compute("Max(Salary)", string.Empty));
+
+
+        Console.WriteLine("Employees Count = " + EmployeesCount);
+        Console.WriteLine("Total Salary = " + TotalSalary);
+        Console.WriteLine("Avarage Salasries = " + AvarageSalasries);
+        Console.WriteLine("Min Salary  = " + MinSalary);
+        Console.WriteLine("Max Salary  = " + MaxSalary);
+
+
+
+
     }
+
+
 }
