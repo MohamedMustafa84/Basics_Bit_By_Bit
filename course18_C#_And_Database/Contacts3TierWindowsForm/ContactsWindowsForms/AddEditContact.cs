@@ -99,7 +99,7 @@ namespace ContactsWindowsForms
         {
             int CountryID = ClsContact.clsCountries.FindCountryByName(cbCountry.Text);
 
-            _Contact.FirstName = tbFirstName.Text;
+            _Contact.FirstName = tbFirstName.Text;  
             _Contact.LastName = tbLastName.Text;
             _Contact.Email = tbEmail.Text;
             _Contact.Phone = tbPhone.Text;
