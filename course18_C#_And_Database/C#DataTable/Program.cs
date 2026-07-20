@@ -84,17 +84,45 @@ internal class Program
 
         ResultRows = dtEmployees.Select("Country='Sudan' or Country='Jordan'");
 
+            Console.WriteLine("Filter Sudanese and Jordan Employees :-");
         foreach (DataRow Row in ResultRows)
         {
 
-            Console.WriteLine("Filter Sudanese and Jordan Employees :-");
             Console.WriteLine($"ID :{Row["ID"]}  FullName : {Row["FirstName"]} {Row["LastName"]} Phone :{Row["Phone"]}  Email : {Row["Email"]} Address : {Row["Address"]} Country : {Row["Country"]} Salary : {Row["Salary"]} Date : {Row["Date"]}");
         }
 
-        double SudaneseTotalSalary = Convert.ToDouble(dtEmployees.Compute("Sum(Salary)", "Country='Sudan"));
+        double SudaneseTotalSalary = Convert.ToDouble(dtEmployees.Compute("Sum(Salary)", "Country='Sudan'"));
 
         Console.WriteLine("Sudanese Employees Total Salary = " + SudaneseTotalSalary);
 
+
+
+        // Sort Data 
+
+        dtEmployees.DefaultView.Sort = "ID Desc";
+        dtEmployees = dtEmployees.DefaultView.ToTable();
+
+
+        Console.WriteLine("Sort Employees BY ID Descinding :-");
+
+        foreach (DataRow Row in dtEmployees.Rows)
+            {
+
+                Console.WriteLine($"ID :{Row["ID"]}  FullName : {Row["FirstName"]} {Row["LastName"]} Phone :{Row["Phone"]}  Email : {Row["Email"]} Address : {Row["Address"]} Country : {Row["Country"]} Salary : {Row["Salary"]} Date : {Row["Date"]}");
+            }
+
+
+        dtEmployees.DefaultView.Sort = "FirstName Desc";
+        dtEmployees = dtEmployees.DefaultView.ToTable();
+
+
+        Console.WriteLine("Sort Employees BY Firast Name Descinding :-");
+
+        foreach (DataRow Row in dtEmployees.Rows)
+        {
+
+            Console.WriteLine($"ID :{Row["ID"]}  FullName : {Row["FirstName"]} {Row["LastName"]} Phone :{Row["Phone"]}  Email : {Row["Email"]} Address : {Row["Address"]} Country : {Row["Country"]} Salary : {Row["Salary"]} Date : {Row["Date"]}");
+        }
 
     }
 
