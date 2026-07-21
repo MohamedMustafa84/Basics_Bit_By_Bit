@@ -124,6 +124,35 @@ internal class Program
             Console.WriteLine($"ID :{Row["ID"]}  FullName : {Row["FirstName"]} {Row["LastName"]} Phone :{Row["Phone"]}  Email : {Row["Email"]} Address : {Row["Address"]} Country : {Row["Country"]} Salary : {Row["Salary"]} Date : {Row["Date"]}");
         }
 
+
+
+
+
+        // delete Data 
+
+        DataRow[] Result = dtEmployees.Select("ID=4");
+
+
+        foreach( DataRow record in Result)
+        {
+            record.Delete();
+        }
+
+
+        //if you contected with the database type the following  line to save The Changes
+
+        //dtEmployees.AcceptChanges();
+
+        dtEmployees.DefaultView.Sort = "ID ASC";
+        dtEmployees = dtEmployees.DefaultView.ToTable();
+
+
+        foreach (DataRow Row in dtEmployees.Rows)
+        {
+            Console.WriteLine($"ID :{Row["ID"]}  FullName : {Row["FirstName"]} {Row["LastName"]}   Country : {Row["Country"]} Salary : {Row["Salary"]}");
+
+        }
+
     }
 
 
