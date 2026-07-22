@@ -153,6 +153,29 @@ internal class Program
 
         }
 
+
+        //  Update DataTable Row 
+
+        DataRow[] SudaneseEmployees = dtEmployees.Select("Country='Sudan'");
+
+        foreach (DataRow Sudani in SudaneseEmployees)
+        {
+            Sudani["Salary"] = "50000";
+        }
+
+
+        //dtEmployees.AcceptChanges();
+
+        Console.WriteLine("---------------------------------");
+
+        Console.WriteLine("Sudanese Employees After The New Update : \n");
+
+        foreach (DataRow Row in dtEmployees.Rows)
+        {
+            Console.WriteLine($"  FullName : {Row["FirstName"]} {Row["LastName"]}   Country : {Row["Country"]} Salary : {Row["Salary"]}");
+
+        }
+
     }
 
 
