@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35828.75 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "C#DataView", "C#DataView.csproj", "{D5E24E18-1E40-4B5C-9157-6D1EE8546681}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D5E24E18-1E40-4B5C-9157-6D1EE8546681}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5E24E18-1E40-4B5C-9157-6D1EE8546681}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5E24E18-1E40-4B5C-9157-6D1EE8546681}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5E24E18-1E40-4B5C-9157-6D1EE8546681}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AA1696BF-629C-4798-A8AC-9A480D208FF6}
+	EndGlobalSection
+EndGlobal
