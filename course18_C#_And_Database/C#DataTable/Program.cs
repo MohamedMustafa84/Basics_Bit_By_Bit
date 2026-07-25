@@ -176,6 +176,58 @@ internal class Program
 
         }
 
+
+
+        // Create Datatable With Primary Key 
+
+        DataTable dtStudents = new DataTable();
+
+       
+
+
+        DataColumn dtColumn = new DataColumn();
+
+        dtColumn.DataType = typeof(int);
+        dtColumn.ColumnName = "ID";
+        dtColumn.AutoIncrement = true;
+        dtColumn.AutoIncrementSeed = 1;
+        dtColumn.AutoIncrementStep = 1;
+        dtColumn.Caption = "Table Primary Key";
+        dtColumn.ReadOnly = false;
+        dtColumn.Unique = true;
+
+        dtStudents.Columns.Add(dtColumn);
+
+        dtStudents.Columns.Add("Name", typeof(string));
+        dtStudents.Columns.Add("Phone", typeof(string));
+        dtStudents.Columns.Add("Address", typeof(string));
+
+
+
+
+
+        DataColumn[] PrimaryKeysColumns = new DataColumn[1];
+
+        PrimaryKeysColumns[0] = dtStudents.Columns["ID"];
+
+        dtStudents.PrimaryKey = PrimaryKeysColumns;
+
+
+
+        dtStudents.Rows.Add(null, "mohamed", "0909099909", null);
+        dtStudents.Rows.Add(null, "Ahmed", "0909449909", null);
+        dtStudents.Rows.Add(null, "Ali", "066099909", null);
+
+
+        Console.WriteLine("\n\n\nStudents List : ");
+
+        foreach (DataRow Student in dtStudents.Rows)
+        {
+            Console.WriteLine($"ID : {Student["ID"]}    \t Name: {Student["Name"]}   \t Phone :{Student["Phone"]}");
+        }
+
+
+
     }
 
 
