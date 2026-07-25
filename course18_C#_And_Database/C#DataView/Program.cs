@@ -81,6 +81,21 @@ internal class Program
         }
 
 
+        // Sorting DataView  
+
+
+        dataView1.Sort = "Name Asc";
+
+
+        Console.WriteLine("\n\n\nDataVeiw Sorted By Name ASC :");
+        
+
+        for (int i = 0; i < dataView1.Count; i++)
+        {
+            Console.WriteLine($" ID : {dataView1[i][0]}  \t Name : {dataView1[i][1]} \t Phone :  {dataView1[i][2]} \t Salary : {dataView1[i][3]}");
+
+        }
+
 
     }
 
