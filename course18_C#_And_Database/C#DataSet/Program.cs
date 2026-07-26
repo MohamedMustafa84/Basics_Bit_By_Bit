@@ -13,7 +13,7 @@ internal class Program
     {
 
 
-        DataTable dtTeachers = new DataTable();
+        DataTable dtTeachers = new DataTable("dtTeachers");
 
         DataColumn Id = new DataColumn();
 
@@ -46,7 +46,7 @@ internal class Program
 
 
 
-        DataTable dtStudents = new DataTable();
+        DataTable dtStudents = new DataTable("dtStudents");
 
         DataColumn StudentsId = new DataColumn();
 
@@ -112,7 +112,7 @@ internal class Program
 
 
 
-        foreach (DataRow Teacher in dataSet1.Tables[0].Rows)
+        foreach (DataRow Teacher in dataSet1.Tables["dtTeachers"].Rows)
         {
             Console.WriteLine($"ID : {Teacher["ID"]} \t Name : {Teacher["Name"]}  \t  Phone : {Teacher["Phone"]}  Salary : {Teacher["Salary"]}");
         }
@@ -124,7 +124,7 @@ internal class Program
         Console.WriteLine("---------------------------------------------------\n\n");
         Console.WriteLine("Printing Students Data From The Data Set :-\n");
 
-        foreach (DataRow Student in dataSet1.Tables[1].Rows)
+        foreach (DataRow Student in dataSet1.Tables["dtStudents"].Rows)
         {
             Console.WriteLine($"ID : {Student["ID"]} \t Name : {Student["Name"]}  \t  Phone : {Student["Phone"]}");
         }
